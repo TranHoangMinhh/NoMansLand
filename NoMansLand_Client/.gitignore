@@ -73,6 +73,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /Library/PackageCache/com.unity.collab-proxy@1.17.7/Editor/Collaborate/Assets/Styles/ChangesTabPageView.uss
 
-*.md
-!README.md
 
