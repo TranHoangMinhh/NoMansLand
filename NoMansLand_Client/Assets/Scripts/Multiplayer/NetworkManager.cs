@@ -3,11 +3,17 @@ using RiptideNetworking.Utils;
 using UnityEngine;
 using System;
 
+public enum ServerToClientId : ushort
+{
+    playerSpawned = 1,
+    playerMovement,
+}
+
 public enum ClientToServerId : ushort
 {
     name = 1,
+    input,
 }
-
 public class NetworkManager : MonoBehaviour
 {
     private static NetworkManager _singleton;
