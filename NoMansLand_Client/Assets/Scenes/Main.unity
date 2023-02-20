@@ -730,6 +730,7 @@ GameObject:
   m_Component:
   - component: {fileID: 949546584}
   - component: {fileID: 949546585}
+  - component: {fileID: 949546586}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -766,6 +767,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ip: 127.0.0.1
   port: 7777
+--- !u!114 &949546586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949546583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29d6b87ab7df9e4d993afe58627b347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localPlayerPrefab: {fileID: 206481896398675349, guid: 83f538e8dcb66c74e93b5e402f39bd4c, type: 3}
+  playerPrefab: {fileID: 206481896398675349, guid: f11c5d68a738a9146baf159d32cde011, type: 3}
 --- !u!1 &1165645468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,7 +1113,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642620205}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1642620207
 Camera:
   m_ObjectHideFlags: 0

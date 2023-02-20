@@ -9,7 +9,7 @@ public class GameLogic : MonoBehaviour
     public static GameLogic Singleton
     {
         get => _singleton;
-        private set 
+        private set     
         {
             if(_singleton == null)
             {

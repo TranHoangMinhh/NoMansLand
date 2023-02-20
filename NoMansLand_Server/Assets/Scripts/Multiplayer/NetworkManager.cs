@@ -16,7 +16,7 @@ public enum ClientToServerId : ushort
 
 public class NetworkManager : MonoBehaviour
 {
-    private static NetworkManager _singleton;
+    private static NetworkManager _singleton;   
 
     public static NetworkManager Singleton
     {

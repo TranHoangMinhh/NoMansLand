@@ -18,12 +18,40 @@ public class Player : MonoBehaviour
 
     public static void Spawn(ushort id, string username)
     {
+        foreach (Player otherPlayer in list.Values)
+        {
+            otherPlayer.SendSpawned(id);
+        }
         Player player = Instantiate(GameLogic.Singleton.PlayerPrefab, new Vector3(0f,1f,0f), Quaternion.identity).GetComponent<Player>();
-        player.name = $"Player {id} {(string.IsNullOrEmpty(username) ? "Guest" : username)}";
+        player.name = $"Player {id} ({(string.IsNullOrEmpty(username) ? "Guest" : username)})";
         player.Id = id; 
         player.Username = string.IsNullOrEmpty(username) ? $"Guest {id}" : username;
-
+        player.SendSpawned();
         list.Add(id, player);
+    }
+
+    #region Messages
+    private void SendSpawned()
+    {
+        Message message = Message.Create(MessageSendMode.reliable, (ushort)ServerToClientId.playerSpawned);
+
+        NetworkManager.Singleton.Server.SendToAll(AddSpawnData(message));
+    }
+
+    private void SendSpawned(ushort toClientId)
+    {
+        Message message = Message.Create(MessageSendMode.reliable, (ushort)ServerToClientId.playerSpawned);
+
+        NetworkManager.Singleton.Server.Send(AddSpawnData(message), toClientId);
+
+    }
+
+    private Message AddSpawnData(Message message)
+    {
+        message.AddUShort(Id);
+        message.AddString(Username);
+        message.AddVector3(transform.position);   
+        return message;
     }
 
     [MessageHandler((ushort)ClientToServerId.name)]
@@ -32,4 +60,6 @@ public class Player : MonoBehaviour
     {
         Spawn(fromClientId, message.GetString());
     }
+    #endregion
+
 }
