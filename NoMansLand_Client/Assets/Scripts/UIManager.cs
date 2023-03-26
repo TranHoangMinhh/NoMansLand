@@ -44,6 +44,18 @@ public class UIManager : MonoBehaviour
     {
         usernameField.interactable = true;
         connectUI.SetActive(true);
+    }   
+
+    public void ShowHitmarker()
+    {
+        hitmarker.enabled = true;
+        StartCoroutine(HideHitmarker());
+    }
+
+    private IEnumerator HideHitmarker()
+    {
+        yield return new WaitForSeconds(0.1f);
+        hitmarker.enabled = false;
     }
 
     public void SendName()
