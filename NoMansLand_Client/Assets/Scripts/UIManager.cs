@@ -1,4 +1,5 @@
 using RiptideNetworking;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject connectUI;
     [SerializeField] private InputField usernameField;
 
+    [Header("Game")]
+    [SerializeField] private GameObject gameUI ;
+    [SerializeField] private Image hitmarker;
     private void Awake()
     {
         Singleton = this;
@@ -36,7 +40,7 @@ public class UIManager : MonoBehaviour
     {
         usernameField.interactable = false;
         connectUI.SetActive(false);
-
+        gameUI.SetActive(true);
         NetworkManager.Singleton.Connect();
     }
 
@@ -44,6 +48,7 @@ public class UIManager : MonoBehaviour
     {
         usernameField.interactable = true;
         connectUI.SetActive(true);
+        gameUI.SetActive(false);
     }   
 
     public void ShowHitmarker()

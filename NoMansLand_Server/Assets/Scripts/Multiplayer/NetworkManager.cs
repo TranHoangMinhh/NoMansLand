@@ -1,5 +1,5 @@
 using RiptideNetworking;
-using RiptideNetworking.Utils ;
+using RiptideNetworking.Utils;
 using UnityEngine;
 
 public enum ServerToClientId : ushort

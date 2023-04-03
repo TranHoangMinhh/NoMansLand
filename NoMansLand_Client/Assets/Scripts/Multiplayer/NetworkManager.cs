@@ -39,7 +39,7 @@ public class NetworkManager : MonoBehaviour
 
     [SerializeField] private string ip;
     [SerializeField] private ushort port;
-    #[SerializeField] private string host;
+    //[SerializeField] private string host;
 
     private void Awake()
     {
@@ -69,7 +69,7 @@ public class NetworkManager : MonoBehaviour
     public void Connect()
     {
         Client.Connect($"{ip}:{port}");
-        #Client.Connect($"{hostAddress}"); used for connecting to host server
+        //Client.Connect($"{hostAddress}"); used for connecting to host server
     }
 
     private void DidConnect(object sender, EventArgs e)
