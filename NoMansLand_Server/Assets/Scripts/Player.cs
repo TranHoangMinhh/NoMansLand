@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         {
             otherPlayer.SendSpawned(id);
         }
-        Player player = Instantiate(GameLogic.Singleton.PlayerPrefab, new Vector3(0f,1f,0f), Quaternion.identity).GetComponent<Player>();
+        Player player = Instantiate(GameLogic.Singleton.PlayerPrefab, new Vector3(0f,2f,0f), Quaternion.identity).GetComponent<Player>();
         player.name = $"Player {id} ({(string.IsNullOrEmpty(username) ? "Guest" : username)})";
         player.Id = id; 
         player.Username = string.IsNullOrEmpty(username) ? $"Guest {id}" : username;
