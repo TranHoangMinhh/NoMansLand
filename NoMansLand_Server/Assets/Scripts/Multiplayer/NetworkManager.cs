@@ -45,18 +45,6 @@ public class NetworkManager : MonoBehaviour
 
     [SerializeField] private ushort port;
     [SerializeField] private ushort maxClientCount;
-    async void Example_InitSDK()
-    {
-        try
-        {
-            await UnityServices.InitializeAsync();
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-    }
-
     private void Awake()
     {
         Singleton = this;
