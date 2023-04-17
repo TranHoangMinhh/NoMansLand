@@ -1,5 +1,6 @@
 using RiptideNetworking;
 using RiptideNetworking.Utils;
+using Unity.Services.Multiplay;
 using UnityEngine;
 
 public enum ServerToClientId : ushort
@@ -44,10 +45,27 @@ public class NetworkManager : MonoBehaviour
 
     [SerializeField] private ushort port;
     [SerializeField] private ushort maxClientCount;
+    async void Example_InitSDK()
+    {
+        try
+        {
+            await UnityServices.InitializeAsync();
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+    }
 
     private void Awake()
     {
         Singleton = this;
+        
+    }
+
+    private async void InitializeUnityAuthentication()
+    {
+
     }
 
     private void Start()
