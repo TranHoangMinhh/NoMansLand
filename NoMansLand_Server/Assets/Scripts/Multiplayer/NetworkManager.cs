@@ -1,5 +1,7 @@
 using RiptideNetworking;
 using RiptideNetworking.Utils;
+using Unity.Services.Core;
+using Unity.Services.Authentication;
 using Unity.Services.Multiplay;
 using UnityEngine;
 
@@ -48,12 +50,20 @@ public class NetworkManager : MonoBehaviour
     private void Awake()
     {
         Singleton = this;
+        //InitializeUnityAuthentication();
         
     }
 
     private async void InitializeUnityAuthentication()
     {
-
+        if(UnityServices.State != ServicesInitializationState.Initialized)
+        {
+            InitializationOptions initializationOptions = new InitializationOptions();
+            await UnityServices.InitializeAsync(initializationOptions);
+#if !DEDICATED_SERVER
+            await  
+#endif
+        }
     }
 
     private void Start()
@@ -61,6 +71,7 @@ public class NetworkManager : MonoBehaviour
         RiptideLogger.Initialize(Debug.Log, Debug.Log, Debug.LogWarning, Debug.LogError, false);
         Server = new Server();
         Server.Start(port, maxClientCount);
+        Debug.Log($"Listening on port {port}");
         Server.ClientDisconnected += PlayerLeft;
     }
 
