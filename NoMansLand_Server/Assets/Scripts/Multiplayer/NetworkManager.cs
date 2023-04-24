@@ -1,6 +1,9 @@
 using RiptideNetworking;
 using RiptideNetworking.Utils;
 using Unity.Services.Core;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Services.Authentication;
 using Unity.Services.Multiplay;
 using UnityEngine;
@@ -51,7 +54,7 @@ public class NetworkManager : MonoBehaviour
     private void Awake()
     {
         Singleton = this;
-        //InitializeUnityAuthentication();
+        InitializeUnityAuthentication();
         
     }
 
@@ -62,9 +65,22 @@ public class NetworkManager : MonoBehaviour
             InitializationOptions initializationOptions = new InitializationOptions();
             await UnityServices.InitializeAsync(initializationOptions);
 #if !DEDICATED_SERVER
-            await  
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+#endif
+#if DEDICATED_SERVER
+            Debug.Log("DEDICATED SERVER");
+
+            MultiplayEventCallbacks multiplayEventCallbacks = new MultiplayEventCallbacks();
+            multiplayEventCallbacks.Allocate += OnAllocate;
+            //multiplayEventCallbacks.Deallocate += 
 #endif
         }
+
+    }
+
+    private void OnAllocate(MultiplayAllocation obj)
+    {
+        throw new NotImplementedException();
     }
 
     private void Start()
