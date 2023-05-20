@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1626762050906620355}
   - component: {fileID: 3564489422478046473}
   - component: {fileID: -7599362868577736477}
+  - component: {fileID: 8806645158210927494}
+  - component: {fileID: -3331865138028780873}
   m_Layer: 0
   m_Name: sniper_color
   m_TagString: Untagged
@@ -100,3 +102,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8806645158210927494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060020363147564252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.004325826, y: 0.016467301, z: 0.082658805}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3331865138028780873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060020363147564252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc92f65f9a15244794e8caf552f9748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactText: Take Sniper

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootWeapon: {fileID: 468323184234555398, guid: 7aa9d906cc818014c8f6a36b012db9b2, type: 3}
   lootName: Shotgun
-  dropChance: 50
+  dropChance: 0
