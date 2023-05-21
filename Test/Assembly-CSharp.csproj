@@ -312,11 +312,32 @@
     <Reference Include="UnityEditor.UnityConnectModule">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.18f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Pdb">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Cecil.Rocks">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="ReportGeneratorMerged">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.testtools.codecoverage@1.2.2\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.nuget.mono-cecil@1.10.1\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.18f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -690,9 +711,6 @@
     <Reference Include="Unity.VSCode.Editor">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -704,9 +722,6 @@
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -720,14 +735,20 @@
     <Reference Include="Unity.VisualScripting.State.Editor">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Burst.Editor">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+    <Reference Include="Unity.Netcode.Editor">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Netcode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Networking.Editor">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Networking.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -738,20 +759,53 @@
     <Reference Include="Unity.Rider.Editor">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.Flow">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Runtime">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Netcode.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Networking.Transport">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Networking.Transport.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Components">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Netcode.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Shared.Editor">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Netcode.Editor.PackageChecker">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Netcode.Editor.PackageChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TestTools.CodeCoverage.Editor">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.State">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
