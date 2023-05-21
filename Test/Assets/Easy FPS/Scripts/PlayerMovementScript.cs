@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
+
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMovementScript : MonoBehaviour {
+public class PlayerMovementScript : NetworkBehaviour {
 	Rigidbody rb;
 
 	[Tooltip("Current players speed")]
