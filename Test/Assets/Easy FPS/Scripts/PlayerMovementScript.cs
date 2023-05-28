@@ -6,7 +6,6 @@ using Unity.Netcode;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovementScript : NetworkBehaviour {
 	Rigidbody rb;
-
 	[Tooltip("Current players speed")]
 	public float currentSpeed;
 	[Tooltip("Assign players camera here")]
@@ -28,20 +27,30 @@ public class PlayerMovementScript : NetworkBehaviour {
 
 	}
 	private Vector3 slowdownV;
+
+
 	private Vector2 horizontalMovement;
 	/*
 	* Raycasting for meele attacks and input movement handling here.
 	*/
 	void FixedUpdate(){
 		RaycastForMeleeAttacks ();
+        Vector2 movementInput;
+        movementInput.x = Input.GetAxis("Horizontal");
+        movementInput.y = Input.GetAxis("Vertical");
 
-		PlayerMovementLogic ();
+		if(IsServer && IsLocalPlayer){
+			PlayerMovementLogic (movementInput);
+		}
+		else if(IsClient && IsLocalPlayer){
+			PlayerMovementLogicServerRpc(movementInput);
+		}
 	}
 	/*
 	* Accordingly to input adds force and if magnitude is bigger it will clamp it.
 	* If player leaves keys it will deaccelerate
 	*/
-	void PlayerMovementLogic(){
+	void PlayerMovementLogic(Vector2 movementInput){
 		currentSpeed = rb.velocity.magnitude;
 		horizontalMovement = new Vector2 (rb.velocity.x, rb.velocity.z);
 		if (horizontalMovement.magnitude > maxSpeed){
@@ -61,15 +70,14 @@ public class PlayerMovementScript : NetworkBehaviour {
 		}
 
 		if (grounded) {
-			rb.AddRelativeForce (Input.GetAxis ("Horizontal") * accelerationSpeed * Time.deltaTime, 0, Input.GetAxis ("Vertical") * accelerationSpeed * Time.deltaTime);
+			rb.AddRelativeForce (movementInput.x * accelerationSpeed * Time.deltaTime, 0, movementInput.y * accelerationSpeed * Time.deltaTime);
 		} else {
-			rb.AddRelativeForce (Input.GetAxis ("Horizontal") * accelerationSpeed / 2 * Time.deltaTime, 0, Input.GetAxis ("Vertical") * accelerationSpeed / 2 * Time.deltaTime);
-
+			rb.AddRelativeForce (movementInput.x * accelerationSpeed / 2 * Time.deltaTime, 0, movementInput.y * accelerationSpeed / 2 * Time.deltaTime);
 		}
 		/*
 		 * Slippery issues fixed here
 		 */
-		if (Input.GetAxis ("Horizontal") != 0 || Input.GetAxis ("Vertical") != 0) {
+		if (movementInput.x != 0 || movementInput.y != 0) {
 			deaccelerationSpeed = 0.5f;
 		} else {
 			deaccelerationSpeed = 0.1f;
@@ -78,6 +86,12 @@ public class PlayerMovementScript : NetworkBehaviour {
 	/*
 	* Handles jumping and ads the force and sounds.
 	*/
+	[ServerRpc]
+	void PlayerMovementLogicServerRpc(Vector2 movementInput)
+	{
+		PlayerMovementLogic(movementInput);
+	}
+
 	void Jumping(){
 		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
 			rb.AddRelativeForce (Vector3.up * jumpForce);
