@@ -21,5 +21,5 @@ public class TestNetcodeUI : MonoBehaviour
            NetworkManager.Singleton.StartClient();
         });
 
-    }
+   }
 }
