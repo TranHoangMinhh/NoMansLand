@@ -40,6 +40,7 @@
      <Compile Include="Assets\Easy FPS\Scripts\GunScript.cs" />
      <Compile Include="Assets\SliderControler.cs" />
      <Compile Include="Assets\Easy FPS\Scripts\MouseLookScript.cs" />
+     <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\Easy FPS\Scripts\GunInventory.cs" />
      <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
      <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
@@ -55,8 +56,8 @@
      <Compile Include="Assets\Loader.cs" />
      <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
      <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
-     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerNetwork.cs" />
-     <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\CameraMovement.cs" />
+     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class PlayerNetwork : NetworkBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
 
     
@@ -18,13 +18,6 @@ public class PlayerNetwork : NetworkBehaviour
 
     Rigidbody rb;
 
-    public override void OnNetworkSpawn()
-    {
-        if(IsOwner)
-        {
-            
-        }
-    }
     private void Awake(){
 		rb = GetComponent<Rigidbody>();
 	}
