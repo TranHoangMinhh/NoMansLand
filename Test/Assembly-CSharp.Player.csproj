@@ -56,24 +56,41 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\POLYGON - FPS free\scripts\destory_simple.cs" />
     <Compile Include="Assets\Scripts\Map\Loot.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\PlayerMovementScript.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\equipment.cs" />
     <Compile Include="Assets\Scripts\UI\MinimapController.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\GunScript.cs" />
     <Compile Include="Assets\SliderControler.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\shoot_handle.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\MouseLookScript.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\killer_bunny.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Map\IInteractable.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\GunInventory.cs" />
     <Compile Include="Assets\Scripts\Map\WeaponSpawnController.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
+    <Compile Include="Assets\Scripts\Player\UnitHealth.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\bunny_receive_dmg.cs" />
+    <Compile Include="Assets\Scripts\UI\CameraReplaceShader.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteractUI.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\targets_for_bunny.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\blood_floor_particle.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBehavior.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\axe.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\find_destory_able_props.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\old_pistol.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\laser_script.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\recyle_inst.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\flame_script.cs" />
     <Compile Include="Assets\Scripts\UI\MinimapFollowCamera.cs" />
+    <Compile Include="Assets\Scripts\UI\Healthbar.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\petrol_can.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\BulletScript.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\Menu.cs" />
@@ -83,17 +100,24 @@
     <Compile Include="Assets\Scripts\InputManager.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\DestroyAfterTimeParticle.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\bunny_spawn.cs" />
+    <Compile Include="Assets\Scripts\UI\FPSDisplay.cs" />
+    <Compile Include="Assets\Scripts\PlayerBehavior.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\muzzle_flash.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\assault57.cs" />
     <Compile Include="Assets\Loader.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\StarterAssets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\CameraMovement.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\timer_destroy.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\polygon_fps_controller.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\spawn_blood.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\destroy_object.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\crowbar_hit.cs" />
+    <Compile Include="Assets\POLYGON - FPS free\scripts\to_parent_connect.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\Map\WeaponsSpawn.cs" />
-    <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerNetwork.cs" />
-    <Compile Include="Assets\Scripts\UI\CameraReplaceShader.cs" />
-    <Compile Include="Assets\Scripts\UI\FPSDisplay.cs" />
-    <Compile Include="Assets\Scripts\Player\UnitHealth.cs" />
-    <Compile Include="Assets\Scripts\PlayerBehavior.cs" />
-    <Compile Include="Assets\Scripts\UI\Healthbar.cs" />
+    <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -105,18 +129,21 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\POLYGON - FPS free\READ_ME.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\StarterAssets\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\POLYGON - FPS free\killer bunny\killer_bunny_index.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\POLYGON - FPS free\index Animations.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
