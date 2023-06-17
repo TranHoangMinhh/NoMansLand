@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -20,6 +20,7 @@ namespace StarterAssets
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
+        public float CrouchSpeed = 1.0f;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -27,6 +28,7 @@ namespace StarterAssets
 
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
+        public float Sensitivity = 1f;
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
@@ -80,6 +82,7 @@ namespace StarterAssets
         private float _cinemachineTargetPitch;
 
         // player
+        private bool Crouch = false;
         private float _speed;
         private float _animationBlend;
         private float _targetRotation = 0.0f;
@@ -92,6 +95,7 @@ namespace StarterAssets
         private float _fallTimeoutDelta;
 
         // animation IDs
+        private Animator anim;
         private int _animIDSpeed;
         private int _animIDGrounded;
         private int _animIDJump;
@@ -130,6 +134,7 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+            anim = GetComponent<Animator>();
         }
 
         private void Start()
@@ -159,6 +164,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Crouching();
         }
 
         private void LateUpdate()
@@ -198,8 +204,8 @@ namespace StarterAssets
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * Sensitivity;
+                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * Sensitivity;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -386,6 +392,28 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }
+
+        public void SetSensitivity(float newSensitivity)
+        {
+            Sensitivity = newSensitivity;
+        }
+
+        private void Crouching()
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                if (Crouch == true)
+                {
+                    Crouch = false;
+                    anim.SetBool("Crouch", true);
+                }
+                else
+                {
+                    Crouch = true;
+                    anim.SetBool("Crouch", false);
+                }
             }
         }
     }

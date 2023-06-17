@@ -376,7 +376,7 @@ public class assault57 : MonoBehaviour
 
 
 
-        RaycastHit hit;
+        //RaycastHit hit;
 
         
 
