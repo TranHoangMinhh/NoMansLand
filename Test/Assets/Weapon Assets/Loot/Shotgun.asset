@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358ef3407fd99a649976c51dc85c6b56, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  lootWeapon: {fileID: 468323184234555398, guid: 7aa9d906cc818014c8f6a36b012db9b2, type: 3}
+  lootWeapon: {fileID: 7194726317302802521, guid: 5655d198b1b43884f945cce4d22a2eb2, type: 3}
   lootName: Shotgun
-  dropChance: 100
+  dropChance: 65
+  damage: 90

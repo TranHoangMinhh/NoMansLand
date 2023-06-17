@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8268357391273582903}
   - component: {fileID: -1901325762703169835}
-  - component: {fileID: 5979268108745472232}
+  - component: {fileID: 8980435994348569822}
   - component: {fileID: 9156443387106169018}
   m_Layer: 0
   m_Name: ak-47_Colorisempty_3D_Template
@@ -134,8 +134,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5979268108745472232
-BoxCollider:
+--- !u!64 &8980435994348569822
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -144,9 +144,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.42108995, y: 9.6294, z: 38.076073}
-  m_Center: {x: 0, y: -0.4318796, z: 7.226533}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: e36f0f5457853dc4498b22c3569e56b2, type: 3}
 --- !u!114 &9156443387106169018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,4 +160,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc92f65f9a15244794e8caf552f9748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactText: Take AK-47
+  interactText: Take AK

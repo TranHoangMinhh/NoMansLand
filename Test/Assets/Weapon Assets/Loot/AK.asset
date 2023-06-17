@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootWeapon: {fileID: 8787872599832411021, guid: b078f314d1176c14d81ddbf3c6e63605, type: 3}
   lootName: AK-47
-  dropChance: 0
+  dropChance: 70
+  damage: 30

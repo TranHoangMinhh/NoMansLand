@@ -10,11 +10,13 @@ public class Loot : ScriptableObject
     [SerializeField] private GameObject lootWeapon;
     [SerializeField] private string lootName;
     [SerializeField] private int dropChance;
+    [SerializeField] private int damage;
 
-    public Loot(GameObject lootWeapon, int dropChance)
+    public Loot(GameObject lootWeapon, int dropChance, int damage)
     {
         this.lootWeapon = lootWeapon;
         this.dropChance = dropChance;
+        this.damage = damage;
     }
 
     public int GetDroppedChance()
@@ -30,5 +32,10 @@ public class Loot : ScriptableObject
     public GameObject GetWeapon()
     {
         return this.lootWeapon;
+    }
+
+    public int GetWeaponDamage()
+    {
+        return this.damage;
     }
 }

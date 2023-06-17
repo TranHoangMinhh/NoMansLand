@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootWeapon: {fileID: 3060020363147564252, guid: f0f128c3a15c0c74496d50eaa6e5c0d2, type: 3}
   lootName: Sniper
-  dropChance: 0
+  dropChance: 35
+  damage: 100

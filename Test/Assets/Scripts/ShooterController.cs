@@ -15,7 +15,8 @@ public class ShooterController : MonoBehaviour
     [SerializeField] private Transform pfBulletProjectile;
     [SerializeField] private Transform spawnBulletLocation;
     [SerializeField] private GameObject muzzleFlash;
-    [SerializeField] AudioSource shootingSound;
+    //[SerializeField] AudioSource shootingSound;
+    [SerializeField] AudioClip shootingSound;
 
 
     private ThirdPersonController thirdPersonController;
@@ -64,7 +65,11 @@ public class ShooterController : MonoBehaviour
             Vector3 aimDir = (mouseWorldPosition - spawnBulletLocation.position).normalized;
             Instantiate(pfBulletProjectile, spawnBulletLocation.position, Quaternion.LookRotation(aimDir, Vector3.up));
             Instantiate(muzzleFlash, spawnBulletLocation.position, Quaternion.identity);
-            shootingSound.Play();
+            
+            //shootingSound.Play();
+            // Change sound shootingSound to AudioClip, the sound will be play at the bullet spawn position
+            AudioSource.PlayClipAtPoint(shootingSound, spawnBulletLocation.position, 0.5f);
+            
             starterAssetsInputs.shoot = false;
         }
     }
