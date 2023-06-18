@@ -124,6 +124,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\Map\WeaponsSpawn.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\LoadingManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
