@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootWeapon: {fileID: 8859437274223218946, guid: 7e27aeb6940c7bd4995ce1874613e4a6, type: 3}
   lootName: MP5K
-  dropChance: 80
+  dropChance: 100
   damage: 10
