@@ -24,7 +24,7 @@ namespace UnityTest.Manager
         {
             HideCursor();
 
-            _currentMap = playerInput.currentActionMap;
+            //_currentMap = playerInput.currentActionMap;
             _moveAction = _currentMap.FindAction("Move");
             _lookAction = _currentMap.FindAction("Look");
             _runAction = _currentMap.FindAction("Run");

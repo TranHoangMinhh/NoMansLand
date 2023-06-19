@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using StarterAssets;
+//using StarterAssets;
 using UnityEngine.InputSystem;
 
 public class ShooterController : MonoBehaviour
@@ -19,13 +19,13 @@ public class ShooterController : MonoBehaviour
     [SerializeField] AudioClip shootingSound;
 
 
-    private ThirdPersonController thirdPersonController;
-    private StarterAssetsInputs starterAssetsInputs;
+    //private ThirdPersonController thirdPersonController;
+    //private StarterAssetsInputs starterAssetsInputs;
 
     private void Awake()
     {
-        thirdPersonController = GetComponent<ThirdPersonController>();
-        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        //thirdPersonController = GetComponent<ThirdPersonController>();
+        //starterAssetsInputs = GetComponent<StarterAssetsInputs>();
     }
     private void Update()
     {
@@ -37,21 +37,21 @@ public class ShooterController : MonoBehaviour
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
         }
-        if (starterAssetsInputs.aim)
-        {
-            aimVirtualCamera.gameObject.SetActive(true);
-            thirdPersonController.SetSensitivity(aimSensitivity);
+        //if (starterAssetsInputs.aim)
+        //{
+        //    aimVirtualCamera.gameObject.SetActive(true);
+        //    thirdPersonController.SetSensitivity(aimSensitivity);
 
-            Vector3 worldAimTarget = mouseWorldPosition;
-            worldAimTarget.y = transform.position.y;
-            Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
+        //    Vector3 worldAimTarget = mouseWorldPosition;
+        //    worldAimTarget.y = transform.position.y;
+        //    Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
-            transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
-        }
+        //    transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+        //}
         else
         {
             aimVirtualCamera.gameObject.SetActive(false);
-            thirdPersonController.SetSensitivity(normalSensitivity);
+            //thirdPersonController.SetSensitivity(normalSensitivity);
 
             Vector3 worldAimTarget = mouseWorldPosition;
             worldAimTarget.y = transform.position.y;
@@ -60,7 +60,7 @@ public class ShooterController : MonoBehaviour
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
         }
 
-        if (starterAssetsInputs.shoot)
+        //if (starterAssetsInputs.shoot)
         {
             Vector3 aimDir = (mouseWorldPosition - spawnBulletLocation.position).normalized;
             Instantiate(pfBulletProjectile, spawnBulletLocation.position, Quaternion.LookRotation(aimDir, Vector3.up));
@@ -70,7 +70,7 @@ public class ShooterController : MonoBehaviour
             // Change sound shootingSound to AudioClip, the sound will be play at the bullet spawn position
             AudioSource.PlayClipAtPoint(shootingSound, spawnBulletLocation.position, 0.5f);
             
-            starterAssetsInputs.shoot = false;
+            //starterAssetsInputs.shoot = false;
         }
     }
 }
