@@ -52,14 +52,17 @@ public class CharacterMovement : NetworkBehaviour
             MoveServerRPC(moveInput);
         }
 
-        Vector2 mouseDelta = playerInput.Player.Look.ReadValue<Vector2>();
-        if (IsServer && IsLocalPlayer)
+        if (playerInput.Player.RightClick.ReadValue<float>()>0)
         {
-            LookAround(mouseDelta);
-        }
-        else if (IsClient && IsLocalPlayer)
-        {
-            LookAroundServerRPC(mouseDelta);
+            Vector2 mouseDelta = playerInput.Player.Look.ReadValue<Vector2>();
+            if (IsServer && IsLocalPlayer)
+            {
+                LookAround(mouseDelta);
+            }
+            else if (IsClient && IsLocalPlayer)
+            {
+                LookAroundServerRPC(mouseDelta);
+            }
         }
     }
 
