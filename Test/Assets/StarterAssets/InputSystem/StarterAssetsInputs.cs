@@ -26,7 +26,7 @@ namespace StarterAssets
 			MoveInput(value.Get<Vector2>());
 		}
 
-		public void OnLook(InputValue value)
+		public void OnLook(InputValue value)	
 		{
 			if (cursorInputForLook)
 			{

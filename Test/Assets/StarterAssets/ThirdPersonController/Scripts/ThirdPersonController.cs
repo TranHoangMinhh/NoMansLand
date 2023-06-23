@@ -77,12 +77,13 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        public bool Crouch = false;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
 
         // player
-        private bool Crouch = false;
         private float _speed;
         private float _animationBlend;
         private float _targetRotation = 0.0f;
@@ -177,6 +178,7 @@ namespace StarterAssets
                 JumpAndGravity();
                 GroundedCheck();
                 Move();
+                Crouching();
             }
         }
 
