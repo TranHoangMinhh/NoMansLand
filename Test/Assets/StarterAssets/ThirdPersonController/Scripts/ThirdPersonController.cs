@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using Unity.Netcode;
+using Cinemachine;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -12,7 +14,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM 
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ThirdPersonController : MonoBehaviour
+    public class ThirdPersonController : NetworkBehaviour
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -20,7 +22,6 @@ namespace StarterAssets
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
-        public float CrouchSpeed = 1.0f;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -28,7 +29,6 @@ namespace StarterAssets
 
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
-        public float Sensitivity = 1f;
 
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
@@ -95,12 +95,12 @@ namespace StarterAssets
         private float _fallTimeoutDelta;
 
         // animation IDs
-        private Animator anim;
         private int _animIDSpeed;
         private int _animIDGrounded;
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        private Animator anim;
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -109,6 +109,7 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        private CinemachineVirtualCamera _cinemachineVirtualCamera;
 
         private const float _threshold = 0.01f;
 
@@ -134,21 +135,20 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+            if (_cinemachineVirtualCamera == null)
+            {
+                _cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+            }
             anim = GetComponent<Animator>();
         }
 
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-#if ENABLE_INPUT_SYSTEM 
-            _playerInput = GetComponent<PlayerInput>();
-#else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-#endif
 
             AssignAnimationIDs();
 
@@ -157,14 +157,27 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
         }
 
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+
+            if (IsClient && IsOwner)
+            {
+                _playerInput = GetComponent<PlayerInput>();
+                _playerInput.enabled = true;
+                _cinemachineVirtualCamera.Follow = transform.Find("PlayerCameraRoot");
+            }
+        }
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
+            if (IsOwner)
+            {
+                _hasAnimator = TryGetComponent(out _animator);
 
-            JumpAndGravity();
-            GroundedCheck();
-            Move();
-            Crouching();
+                JumpAndGravity();
+                GroundedCheck();
+                Move();
+            }
         }
 
         private void LateUpdate()
@@ -204,8 +217,8 @@ namespace StarterAssets
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * Sensitivity;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * Sensitivity;
+                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
+                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -393,11 +406,6 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
-        }
-
-        public void SetSensitivity(float newSensitivity)
-        {
-            Sensitivity = newSensitivity;
         }
 
         private void Crouching()
