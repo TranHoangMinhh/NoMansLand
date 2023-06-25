@@ -62,6 +62,8 @@ namespace StarterAssets
         public LayerMask GroundLayers;
 
         [Header("Cinemachine")]
+        public CinemachineVirtualCamera _cinemachineVirtualCamera;
+        public AudioListener listener;
         [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
         public GameObject CinemachineCameraTarget;
 
@@ -110,7 +112,6 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
-        private CinemachineVirtualCamera _cinemachineVirtualCamera;
 
         private const float _threshold = 0.01f;
 
@@ -135,10 +136,6 @@ namespace StarterAssets
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            }
-            if (_cinemachineVirtualCamera == null)
-            {
-                _cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
             }
             anim = GetComponent<Animator>();
         }
@@ -166,7 +163,15 @@ namespace StarterAssets
             {
                 _playerInput = GetComponent<PlayerInput>();
                 _playerInput.enabled = true;
-                _cinemachineVirtualCamera.Follow = transform.Find("PlayerCameraRoot");
+            }
+            if (IsOwner)
+            {
+                listener.enabled = true;
+                _cinemachineVirtualCamera.Priority = 10;
+            }
+            else
+            {
+                _cinemachineVirtualCamera.Priority = 0;
             }
         }
         private void Update()
@@ -234,6 +239,11 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (_input.sprint)
+            {
+                Crouch = true;
+                anim.SetBool("Crouch", false);
+            }
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -329,6 +339,8 @@ namespace StarterAssets
                     // update animator if using character
                     if (_hasAnimator)
                     {
+                        Crouch = true;
+                        anim.SetBool("Crouch", false);
                         _animator.SetBool(_animIDJump, true);
                     }
                 }
@@ -412,17 +424,19 @@ namespace StarterAssets
 
         private void Crouching()
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (_input.crouch)
             {
                 if (Crouch == true)
                 {
                     Crouch = false;
                     anim.SetBool("Crouch", true);
+                    _input.crouch = false;
                 }
                 else
                 {
                     Crouch = true;
                     anim.SetBool("Crouch", false);
+                    _input.crouch = false;
                 }
             }
         }
