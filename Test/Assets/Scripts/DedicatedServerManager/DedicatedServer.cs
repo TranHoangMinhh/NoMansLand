@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Multiplay;
+using Unity.Services.Authentication;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 
@@ -9,12 +10,10 @@ public class DedicatedServer : MonoBehaviour
 {
     private const string _internalServerIP = "0.0.0.0";
     private ushort _serverPort = 7777;
-    public ushort dPort {get; private set;}
-    public string dServerIPAddress {get; private set;}
+
+    private bool serverStarted = false;
     private void Start()
     {
-        dPort = 7777;
-        dServerIPAddress = "127.0.0.1";
         bool server = false;
         var args = System.Environment.GetCommandLineArgs();
         for (int i = 0; i < args.Length; i++)
@@ -23,23 +22,17 @@ public class DedicatedServer : MonoBehaviour
             {
                 server = true;
             }
-
-            /*
-            if(args[i] == "-port" && (i + 1 < args.Length))
-            {
-                _serverPort = (ushort)int.Parse(args[i+1]);
-            }
-            */
-        
         #if DEDICATED_SERVER
             if(server)
             {
                 InitializeDedicatedServer();
-                Debug.Log("Initialize server");
-                StartServer();
-                Debug.Log("Start server done");
-                ReadyServer();
-                Debug.Log("Server ready to accept players");
+                Debug.Log("Initialize server done");
+                if(serverStarted == false){
+                    StartServer();
+                    Debug.Log("Start server done");
+                    ReadyServer();
+                    Debug.Log("Server ready to accept players");
+                }
 
             }
         #endif
@@ -54,41 +47,65 @@ public class DedicatedServer : MonoBehaviour
 
     private async void InitializeDedicatedServer()
     {
-        try
+        if(UnityServices.State != ServicesInitializationState.Initialized)
         {
-            await UnityServices.InitializeAsync();
+            try
+            {
+                var options = new InitializationOptions();
+                options.SetProfile("test_profile");
+                await UnityServices.InitializeAsync(options);
+#if !DEDICATED_SERVER
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+#endif
 
-            MultiplayEventCallbacks multiplayEventCallbacks = new MultiplayEventCallbacks();
-            multiplayEventCallbacks.Allocate += OnAllocate;
-            multiplayEventCallbacks.Deallocate += OnDeallocate;
-            multiplayEventCallbacks.Error += OnError;
-            multiplayEventCallbacks.SubscriptionStateChanged += OnSubscriptionStateChanged;
-            
-            IServerEvents serverEvents = await MultiplayService.Instance.SubscribeToServerEventsAsync(multiplayEventCallbacks);
+#if DEDICATED_SERVER
+                Debug.Log("Unity service not initialized");
 
+                MultiplayEventCallbacks multiplayEventCallbacks = new MultiplayEventCallbacks();
+                multiplayEventCallbacks.Allocate += OnAllocate;
+                multiplayEventCallbacks.Deallocate += OnDeallocate;
+                multiplayEventCallbacks.Error += OnError;
+                multiplayEventCallbacks.SubscriptionStateChanged += OnSubscriptionStateChanged;
+                
+                IServerEvents serverEvents = await MultiplayService.Instance.SubscribeToServerEventsAsync(multiplayEventCallbacks);
+
+                var serverConfig = MultiplayService.Instance.ServerConfig;
+                Debug.Log($"Server ID[{serverConfig.ServerId}]");
+                Debug.Log($"AllocationID[{serverConfig.AllocationId}]");
+                Debug.Log($"Server IPv4 address[{serverConfig.IpAddress}]");
+                Debug.Log($"Port[{serverConfig.Port}]");
+                Debug.Log($"QueryPort[{serverConfig.QueryPort}");
+                Debug.Log($"LogDirectory[{serverConfig.ServerLogDirectory}]");
+
+                _serverPort = serverConfig.Port;
+
+                if(serverConfig.AllocationId != "")
+                {
+                    OnAllocate(new MultiplayAllocation("", serverConfig.ServerId, serverConfig.AllocationId));
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
+            }
+            serverStarted = true;
+#endif
+        }
+        else {
+            serverStarted = true;
+#if DEDICATED_SERVER
+            Debug.Log("Unity service already initialized");
             var serverConfig = MultiplayService.Instance.ServerConfig;
-            Debug.Log($"Server ID[{serverConfig.ServerId}]");
-            Debug.Log($"AllocationID[{serverConfig.AllocationId}]");
-            Debug.Log($"Server IPv4 address[{serverConfig.IpAddress}]");
-            Debug.Log($"Port[{serverConfig.Port}]");
-            Debug.Log($"QueryPort[{serverConfig.QueryPort}");
-            Debug.Log($"LogDirectory[{serverConfig.ServerLogDirectory}]");
-
             _serverPort = serverConfig.Port;
 
-            dServerIPAddress = serverConfig.IpAddress;
-            dPort = serverConfig.Port;
             if(serverConfig.AllocationId != "")
             {
                 OnAllocate(new MultiplayAllocation("", serverConfig.ServerId, serverConfig.AllocationId));
             }
 
+#endif
+        }
 
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
     }
 
 
