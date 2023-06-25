@@ -725,10 +725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ff4efb37364bb48b09f78d18ba1565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 2
-  radius: 30
-  force: 700
-  explosionEffect: {fileID: 1273915125232972, guid: 73767e07adddc394d82b994801f89bbb, type: 3}
+  smoke: {fileID: 1273915125232972, guid: 73767e07adddc394d82b994801f89bbb, type: 3}
+  duration: 0
 --- !u!136 &1129059712
 CapsuleCollider:
   m_ObjectHideFlags: 0
