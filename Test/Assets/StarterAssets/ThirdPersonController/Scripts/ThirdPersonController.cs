@@ -174,6 +174,7 @@ namespace StarterAssets
                 _cinemachineVirtualCamera.Priority = 0;
             }
         }
+
         private void Update()
         {
             if (IsOwner)

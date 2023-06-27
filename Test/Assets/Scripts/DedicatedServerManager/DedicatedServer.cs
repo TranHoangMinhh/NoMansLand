@@ -10,7 +10,6 @@ public class DedicatedServer : MonoBehaviour
 {
     private const string _internalServerIP = "0.0.0.0";
     private ushort _serverPort = 7777;
-
     private bool serverStarted = false;
     private void Start()
     {
@@ -116,7 +115,7 @@ public class DedicatedServer : MonoBehaviour
 
     private void OnAllocate(MultiplayAllocation allocation)
     {
-
+        
     }
 
 	private void OnDeallocate(MultiplayDeallocation deallocation)

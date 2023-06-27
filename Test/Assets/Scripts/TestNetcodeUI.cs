@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine.Networking;
-using TMPro;
 using System;
 using System.Text;
 
@@ -14,8 +13,9 @@ public class TestNetcodeUI : MonoBehaviour
     [SerializeField]private Button clientBtn;
     [SerializeField]private Button hostBtn;
    
-    [SerializeField]private TMP_InputField ip_from_input;
-    [SerializeField]private TMP_InputField port_from_input;
+    [SerializeField]private InputField IP;
+    [SerializeField]private InputField port;
+    [SerializeField]private Button ipConnectBtn;
 
     private string clientIP;
     private ushort connectPort;
@@ -35,22 +35,42 @@ public class TestNetcodeUI : MonoBehaviour
         string url= $"https://services.api.unity.com/multiplay/servers/v1/projects/{projectID}/environments/{environmentID}/servers";
  
 
-
          serverBtn.onClick.AddListener(() => {
+
            NetworkManager.Singleton.StartServer();
+
          });
          hostBtn.onClick.AddListener(() => {
+
             NetworkManager.Singleton.StartHost();
+
          });
          clientBtn.onClick.AddListener(() => {
             //getServer(url, keyBase64);
             //Debug.Log("Client authenticated to server done");
-            string ip_input = ip_from_input.text;
-            ushort port_input = ushort.Parse(port_from_input.text);
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(ip_input, (ushort)port_input);
-            NetworkManager.Singleton.StartClient();
-            ip_from_input.enabled = false;
-            port_from_input.enabled=false;
+            IP.gameObject.SetActive(true);
+            port.gameObject.SetActive(true);
+            ipConnectBtn.gameObject.SetActive(true);
+
+            ipConnectBtn.onClick.AddListener(() =>
+            {
+                if(IP.text != "")
+                {
+                    clientIP = IP.text;
+                }
+                if(port.text != "")
+                {
+                    connectPort = (ushort)int.Parse(port.text);
+                }
+                NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(clientIP, connectPort);
+                if(NetworkManager.Singleton.StartClient())
+                {
+                    IP.gameObject.SetActive(false);
+                    port.gameObject.SetActive(false);
+                    ipConnectBtn.gameObject.SetActive(false);
+                }
+            });
+
         });
    }
 

@@ -12,7 +12,6 @@ public class dservermanual : MonoBehaviour
     private const string _internalServerIP = "0.0.0.0";
     private ushort _serverPort = 7777;
 
-    private bool serverStarted = false;
     private void Start()
     {
         bool server = false;
@@ -32,8 +31,11 @@ public class dservermanual : MonoBehaviour
         if(server)
         {
             StartServer();
+            Debug.Log("Start server done");
             StartServerServices();
+            Debug.Log("Start server services done");
             ReadyServer();
+            Debug.Log("Ready server done");
         }
     }
 
