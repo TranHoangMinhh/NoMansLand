@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 3ca8f11cc7fca9747b2bf3be79dac021, type: 3}
       propertyPath: m_Name
-      value: Grenade
+      value: Grenade Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ca8f11cc7fca9747b2bf3be79dac021, type: 3}
@@ -104,7 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1912671df429a414f9c6f045b3256da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 50
   delay: 3
   radius: 5
-  force: 700
+  force: 100
   explosionEffect: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}

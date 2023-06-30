@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
+    public int damage = 50;
     public float delay = 3f;
-    public float radius = 5f;
-    public float force = 700f;
+    public float radius = 10f;
+    public float force = 100f;
 
     public GameObject explosionEffect;
 

@@ -4,8 +4,10 @@ using Unity.Collections;
 
 public class ThrowGrenade : MonoBehaviour
 {
-    public GameObject smokeGrenadePrefab;
+    public GameObject grenadePrefab;
     public float throwForce = 10f;
+    public int grenadeDamage = 50;
+    public float explosionRadius = 10f;
 
     private Camera mainCamera;
 
@@ -18,14 +20,14 @@ public class ThrowGrenade : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            ThrowSmokeGrenade();
+            ThrowExplosionGrenade();
         }
     }
 
-    private void ThrowSmokeGrenade()
+    private void ThrowExplosionGrenade()
     {
         // Instantiate the smoke grenade prefab
-        GameObject smokeGrenade = Instantiate(smokeGrenadePrefab, transform.position, Quaternion.identity);
+        GameObject smokeGrenade = Instantiate(grenadePrefab, transform.position, Quaternion.identity);
 
         // Get the forward direction of the player's camera
         Vector3 throwDirection = mainCamera.transform.forward;
@@ -35,4 +37,3 @@ public class ThrowGrenade : MonoBehaviour
         rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
     }
 }
-
