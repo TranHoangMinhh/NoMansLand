@@ -1,5 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
+using Unity.Services.Authentication;
+
 using System;
 
 public class ServerHandler : NetworkBehaviour
@@ -11,6 +13,8 @@ public class ServerHandler : NetworkBehaviour
     private NetworkList<PlayerData> playerDataNetworkList;
 
     public event EventHandler OnPlayerDataNetworkListChanged;
+    public event EventHandler OnFailedToJoinGame;
+    public event EventHandler OnTryingToJoinGame;
 
     private void Awake()
     {
@@ -21,13 +25,34 @@ public class ServerHandler : NetworkBehaviour
         playerDataNetworkList.OnListChanged += PlayerDataNetworkList_OnListChanged;
 
     }
-    private void Start()
-    {
+    public void StartHost() {
         NetworkManager.Singleton.ConnectionApprovalCallback += NetworkManager_ConnectionApprovalCallback;
         NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_Server_OnClientDisconnectCallback;
-
+        NetworkManager.Singleton.StartHost();
     }
+
+    public void StartServer() {
+        NetworkManager.Singleton.ConnectionApprovalCallback += NetworkManager_ConnectionApprovalCallback;
+        NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientConnectedCallback;
+        NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_Server_OnClientDisconnectCallback;
+        NetworkManager.Singleton.StartServer();
+    }
+
+    public bool StartClient() {
+        OnTryingToJoinGame?.Invoke(this, EventArgs.Empty);
+
+        NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_Client_OnClientDisconnectCallback;
+        NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_Client_OnClientConnectedCallback;
+        
+        if(NetworkManager.Singleton.StartClient())
+        {
+            return true;
+        }
+        return false;
+    }
+
+
     private void NetworkManager_Server_OnClientDisconnectCallback(ulong clientId) {
         for (int i = 0; i < playerDataNetworkList.Count; i++) {
             PlayerData playerData = playerDataNetworkList[i];
@@ -36,13 +61,15 @@ public class ServerHandler : NetworkBehaviour
                 playerDataNetworkList.RemoveAt(i);
             }
         }
+
+        Debug.Log($"Client {clientId} disconnected");
     }
 
     private void NetworkManager_OnClientConnectedCallback(ulong clientId) {
-        Debug.Log("Client Connected " + " " + clientId);
         playerDataNetworkList.Add(new PlayerData {
-            clientId = clientId,
+            clientId = clientId
         });
+        Debug.Log($"Client {clientId} connected");
     }
 
     private void NetworkManager_ConnectionApprovalCallback(NetworkManager.ConnectionApprovalRequest connectionApprovalRequest, NetworkManager.ConnectionApprovalResponse connectionApprovalResponse) {
@@ -54,10 +81,45 @@ public class ServerHandler : NetworkBehaviour
         }
 
         connectionApprovalResponse.Approved = true;
+
     }
 
     private void PlayerDataNetworkList_OnListChanged(NetworkListEvent<PlayerData> changeEvent) {
         OnPlayerDataNetworkListChanged?.Invoke(this, EventArgs.Empty);
     }
+
+    private void NetworkManager_Client_OnClientDisconnectCallback(ulong clientId)
+    {
+        OnFailedToJoinGame?.Invoke(this, EventArgs.Empty);
+    }
+
+
+    private void NetworkManager_Client_OnClientConnectedCallback(ulong clientId)
+    {
+        //SetPlayerNameServerRpc(GetPlayerName());
+        SetPlayerIdServerRpc(AuthenticationService.Instance.PlayerId);
+    }
+
+    public int GetPlayerDataIndexFromClientId(ulong clientId) {
+        for (int i=0; i< playerDataNetworkList.Count; i++) {
+            if (playerDataNetworkList[i].clientId == clientId) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetPlayerIdServerRpc(string playerId, ServerRpcParams serverRpcParams = default) {
+        int playerDataIndex = GetPlayerDataIndexFromClientId(serverRpcParams.Receive.SenderClientId);
+
+        PlayerData playerData = playerDataNetworkList[playerDataIndex];
+
+        playerData.playerId = playerId;
+
+        playerDataNetworkList[playerDataIndex] = playerData;
+    }
+
 
 }

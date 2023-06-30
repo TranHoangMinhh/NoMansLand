@@ -87,11 +87,9 @@ public class DedicatedServer : MonoBehaviour
             {
                 Debug.Log(e);
             }
-            serverStarted = true;
 #endif
         }
         else {
-            serverStarted = true;
 #if DEDICATED_SERVER
             Debug.Log("Unity service already initialized");
             var serverConfig = MultiplayService.Instance.ServerConfig;

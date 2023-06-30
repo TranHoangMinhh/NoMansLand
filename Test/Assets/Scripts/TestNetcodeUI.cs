@@ -37,12 +37,12 @@ public class TestNetcodeUI : MonoBehaviour
 
          serverBtn.onClick.AddListener(() => {
 
-           NetworkManager.Singleton.StartServer();
+           ServerHandler.Instance.StartServer();
 
          });
          hostBtn.onClick.AddListener(() => {
 
-            NetworkManager.Singleton.StartHost();
+            ServerHandler.Instance.StartHost();
 
          });
          clientBtn.onClick.AddListener(() => {
@@ -63,12 +63,12 @@ public class TestNetcodeUI : MonoBehaviour
                     connectPort = (ushort)int.Parse(port.text);
                 }
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(clientIP, connectPort);
-                if(NetworkManager.Singleton.StartClient())
+                if(ServerHandler.Instance.StartClient())
                 {
                     IP.gameObject.SetActive(false);
                     port.gameObject.SetActive(false);
                     ipConnectBtn.gameObject.SetActive(false);
-                }
+                }   
             });
 
         });
