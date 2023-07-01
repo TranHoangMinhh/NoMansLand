@@ -4456,8 +4456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f190983612b4aaf4889c6a14dab8bccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smokeGrenadePrefab: {fileID: 1767979592256381560, guid: 9f90b1c3b6a7bc3418097bbf4f1178b8, type: 3}
+  grenadePrefab: {fileID: 1767979592256381560, guid: 9f90b1c3b6a7bc3418097bbf4f1178b8, type: 3}
   throwForce: 10
+  grenadeDamage: 50
+  explosionRadius: 10
 --- !u!1 &4825824190548816162
 GameObject:
   m_ObjectHideFlags: 0
