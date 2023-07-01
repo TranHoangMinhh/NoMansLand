@@ -36,10 +36,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\io.realm.unity@11.1.0\Editor\Realm.SourceGenerator.dll" />
-  </ItemGroup>
-  <ItemGroup>
      <Compile Include="Assets\POLYGON - FPS free\scripts\destory_simple.cs" />
+     <Compile Include="Assets\ThrowGrenade.cs" />
      <Compile Include="Assets\Scripts\Map\Loot.cs" />
      <Compile Include="Assets\Scripts\ProjectileGunTutorial.cs" />
      <Compile Include="Assets\Easy FPS\Scripts\PlayerMovementScript.cs" />
@@ -72,7 +70,10 @@
      <Compile Include="Assets\Scripts\DedicatedServerManager\dservermanual.cs" />
      <Compile Include="Assets\Scripts\UI\CameraReplaceShader.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInteractUI.cs" />
+     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\PlayerTemplateUI.cs" />
+     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\LobbyManager.cs" />
      <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\AdjustTimeScale.cs" />
+     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\LobbyTemplateUI.cs" />
      <Compile Include="Assets\POLYGON - FPS free\scripts\targets_for_bunny.cs" />
      <Compile Include="Assets\POLYGON - FPS free\scripts\blood_floor_particle.cs" />
      <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
@@ -101,6 +102,7 @@
      <Compile Include="Assets\Scripts\DedicatedServerManager\TargetFPS.cs" />
      <Compile Include="Assets\Easy FPS\Scripts\DestroyAfterTimeParticle.cs" />
      <Compile Include="Assets\POLYGON - FPS free\scripts\bunny_spawn.cs" />
+     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\LobbyListUI.cs" />
      <Compile Include="Assets\Scripts\PlayerData.cs" />
      <Compile Include="Assets\Scripts\UI\FPSDisplay.cs" />
      <Compile Include="Assets\Scripts\PlayerBehavior.cs" />
@@ -118,11 +120,14 @@
      <Compile Include="Assets\POLYGON - FPS free\scripts\destroy_object.cs" />
      <Compile Include="Assets\POLYGON - FPS free\scripts\crowbar_hit.cs" />
      <Compile Include="Assets\POLYGON - FPS free\scripts\to_parent_connect.cs" />
+     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\CreateRoomUI.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
      <Compile Include="Assets\Scripts\ClientNetworkAnimator.cs" />
      <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
      <Compile Include="Assets\Scripts\Map\WeaponsSpawn.cs" />
+     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\AuthenticateUI.cs" />
      <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\RoomUI.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -400,38 +405,29 @@
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
-    <Reference Include="Realm.UnityUtils">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\io.realm.unity@11.1.0\Runtime\Realm.UnityUtils.dll</HintPath>
+    <Reference Include="Unity.Burst.Cecil.Mdb">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Pdb">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
     </Reference>
-    <Reference Include="websocket-sharp">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.services.wire@1.1.4\Plugins\websocket-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="ReportGeneratorMerged">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.testtools.codecoverage@1.2.2\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
-    </Reference>
-    <Reference Include="Realm">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\io.realm.unity@11.1.0\Runtime\Realm.dll</HintPath>
-    </Reference>
-    <Reference Include="Realm.PlatformHelpers">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\io.realm.unity@11.1.0\Runtime\Realm.PlatformHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Cecil.Mdb">
-        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Burst.Cecil">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.services.wire@1.1.4\Plugins\websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Cecil.Rocks">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Rocks.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ReportGeneratorMerged">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.testtools.codecoverage@1.2.2\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\PackageCache\com.unity.nuget.mono-cecil@1.10.1\Mono.Cecil.dll</HintPath>
@@ -912,6 +908,9 @@
     </Reference>
     <Reference Include="Unity.Animation.Rigging.Editor">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Animation.Rigging.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Services.Lobbies">
+        <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.Services.Lobbies.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Flow.Editor">
         <HintPath>C:\Users\minh.d.tran\Documents\DHKHTN\DATN\NML\NoMansLand\Test\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>

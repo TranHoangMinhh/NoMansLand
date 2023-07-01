@@ -7,8 +7,9 @@ public static class Loader
 {
     // Start is called before the first frame update
     public enum Scene
-        {
+    {
         Menu,
+        Demo
     }
 
     // Update is called once per frame
