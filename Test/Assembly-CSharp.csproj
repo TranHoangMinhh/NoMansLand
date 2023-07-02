@@ -128,6 +128,7 @@
      <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\AuthenticateUI.cs" />
      <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\RoomUI.cs" />
+     <Compile Include="Assets\Scripts\UI\StartCanvas.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -2,19 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 public static class Loader
 {
     // Start is called before the first frame update
     public enum Scene
     {
-        Menu,
-        Demo
+        MainMenuScene,
+        GameScene,
+        LoadingScene,
+        LobbyScene,
+    }
+
+    private static Scene targetScene;
+
+    public static void LoadNetwork(Scene targetScene)
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene(targetScene.ToString(), LoadSceneMode.Single);
     }
 
     // Update is called once per frame
-    public static void Load(Scene scene)
+    public static void Load(Scene targetScene)
     {
-        SceneManager.LoadScene(scene.ToString());
+        Loader.targetScene = targetScene;
+        SceneManager.LoadScene(targetScene.ToString());
     }
 }

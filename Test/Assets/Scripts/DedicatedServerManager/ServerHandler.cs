@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using Unity.Services.Authentication;
+using UnityEngine.SceneManagement;
 
 using System;
 
@@ -73,13 +74,19 @@ public class ServerHandler : NetworkBehaviour
     }
 
     private void NetworkManager_ConnectionApprovalCallback(NetworkManager.ConnectionApprovalRequest connectionApprovalRequest, NetworkManager.ConnectionApprovalResponse connectionApprovalResponse) {
+        /*
+        if (SceneManager.GetActiveScene().name != Loader.Scene.CharacterSelectScene.ToString()) {
+            connectionApprovalResponse.Approved = false;
+            connectionApprovalResponse.Reason = "Game has already started";
+            return;
+        }
 
         if (NetworkManager.Singleton.ConnectedClientsIds.Count >= MAX_PLAYER_AMOUNT) {
             connectionApprovalResponse.Approved = false;
             connectionApprovalResponse.Reason = "Game is full";
             return;
         }
-
+        */
         connectionApprovalResponse.Approved = true;
 
     }
