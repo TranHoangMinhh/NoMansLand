@@ -51,6 +51,7 @@ public class LobbyListUI : MonoBehaviour
     private void Show()
     {
         gameObject.SetActive(true);
+        LobbyManager.Instance.RefreshLobbyList();
     }
 
     private void LobbyManager_OnLobbyListChanged(object sender, LobbyManager.OnLobbyListChangedEventArgs e)
@@ -67,11 +68,13 @@ public class LobbyListUI : MonoBehaviour
     private void LobbyManager_OnLeftLobby(object sender, EventArgs e)
     {
         Show();
+        roomUI.SetActive(false);
     }
 
     private void LobbyManager_OnKickedFromLobby(object sender, LobbyManager.LobbyEventArgs e)
     {
         Show();
+        roomUI.SetActive(false);
     }
 
     //! Reserved for new UI
@@ -102,6 +105,10 @@ public class LobbyListUI : MonoBehaviour
             lobbyTemplateTransform.gameObject.SetActive(true);
             LobbyTemplateUI lobbyTemplateUI = lobbyTemplateTransform.GetComponent<LobbyTemplateUI>();
             lobbyTemplateUI.UpdateLobby(lobby);
+
+#if UNITY_EDITOR
+            Debug.Log($"Room name: {lobby.Name}; Max Player: {lobby.MaxPlayers}; In room: {lobby.Players.Count}");
+#endif
         }
     }
 
