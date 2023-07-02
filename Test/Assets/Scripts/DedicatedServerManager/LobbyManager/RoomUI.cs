@@ -14,11 +14,15 @@ public class RoomUI : MonoBehaviour
     [SerializeField] private Transform playerTemplateUI;
     [SerializeField] private Transform playerListContainer;
     [SerializeField] private TextMeshProUGUI roomNameText;
-    [SerializeField] private TextMeshProUGUI roomIDText;
     [SerializeField] private TextMeshProUGUI playerCountText;
+
+    [SerializeField] private Button roomCodeButton;
+    [SerializeField] private TextMeshProUGUI roomCodeText;
 
     [SerializeField] private Button leaveRoomButton;
     [SerializeField] private Button startGameButton;
+
+    private string _roomCode;
 
 
     private void Awake()
@@ -31,6 +35,8 @@ public class RoomUI : MonoBehaviour
         leaveRoomButton.onClick.AddListener(() => {
             LobbyManager.Instance.LeaveLobby();
         });
+
+        roomCodeButton.onClick.AddListener(CopyCodeToClipboard);
         
         startGameButton.onClick.AddListener(StartGame);
     }
@@ -101,11 +107,18 @@ public class RoomUI : MonoBehaviour
             newPlayerTemplate.UpdatePlayer(player);
         }
 
+        _roomCode = lobby.LobbyCode;
+
         roomNameText.text = lobby.Name;
-        roomIDText.text = $"Code: {lobby.LobbyCode}";
+        roomCodeText.text = $"Code: {lobby.LobbyCode}";
         playerCountText.text = $"{lobby.Players.Count}/{lobby.MaxPlayers} Players";
 
         Show();
+    }
+
+    private void CopyCodeToClipboard()
+    {
+        GUIUtility.systemCopyBuffer = _roomCode;
     }
 
     private void StartGame()

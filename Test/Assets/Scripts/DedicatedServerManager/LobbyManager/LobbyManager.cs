@@ -92,6 +92,7 @@ public class LobbyManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()

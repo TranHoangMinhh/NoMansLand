@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\POLYGON - FPS free\scripts\destory_simple.cs" />
+    <Compile Include="Assets\ThrowGrenade.cs" />
     <Compile Include="Assets\Scripts\Map\Loot.cs" />
     <Compile Include="Assets\Scripts\ProjectileGunTutorial.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\PlayerMovementScript.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Assets\POLYGON - FPS free\scripts\find_destory_able_props.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\old_pistol.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\laser_script.cs" />
+    <Compile Include="Assets\Scripts\DedicatedServerManager\ServerHandler.cs" />
     <Compile Include="Assets\Scripts\Weapon\BulletProjectile.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\recyle_inst.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Assets\Easy FPS\Scripts\DestroyAfterTimeParticle.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\bunny_spawn.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\LobbyListUI.cs" />
+    <Compile Include="Assets\Scripts\PlayerData.cs" />
     <Compile Include="Assets\Scripts\UI\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\PlayerBehavior.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\muzzle_flash.cs" />
