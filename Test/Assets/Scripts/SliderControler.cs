@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class SliderControler : MonoBehaviour
 {
-    [SerializeField] private Slider durationSlider;
+    [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI valueText;
 
     private void Start()
     {
-        valueText.text = durationSlider.value.ToString();
+        valueText.text = slider.value.ToString();
     }
 
     public void OnSliderChange(float value)

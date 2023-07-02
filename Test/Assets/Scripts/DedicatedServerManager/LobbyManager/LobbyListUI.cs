@@ -13,12 +13,13 @@ public class LobbyListUI : MonoBehaviour
     [SerializeField] private Transform lobbyTemplate;
     [SerializeField] private Transform lobbyListContainer;
     [SerializeField] private Button refreshButton;
-    //[SerializeField] private Button createLobbyButton;  //! Reserved for new UI
+    [SerializeField] private Button createLobbyButton;
 
     [SerializeField] private TMP_InputField inputRoomCodeText;
     [SerializeField] private Button joinRoomButton;
 
     [SerializeField] private GameObject roomUI;
+    [SerializeField] private GameObject createRoomUI;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class LobbyListUI : MonoBehaviour
 
         lobbyTemplate.gameObject.SetActive(false);
         refreshButton.onClick.AddListener(RefreshButtonClick);
-        //createLobbyButton.onClick.AddListener(CreateLobbyButtonClick);  //! Reserved for new UI
+        createLobbyButton.onClick.AddListener(CreateLobbyButtonClick);  //! Reserved for new UI
 
         joinRoomButton.onClick.AddListener(() =>
         {
@@ -82,6 +83,12 @@ public class LobbyListUI : MonoBehaviour
     //{
     //    throw new NotImplementedException();
     //}
+
+    private void CreateLobbyButtonClick()
+    {
+        Hide();
+        createRoomUI.gameObject.SetActive(true);
+    }
 
     private void RefreshButtonClick()
     {
