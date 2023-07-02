@@ -10,16 +10,23 @@ public class LobbyListUI : MonoBehaviour
 {
     public static LobbyListUI Instance { get; private set; }
 
+    [Header("Lobby List")]
     [SerializeField] private Transform lobbyTemplate;
     [SerializeField] private Transform lobbyListContainer;
     [SerializeField] private Button refreshButton;
-    [SerializeField] private Button createLobbyButton;
+    [SerializeField] private Button backButton;
 
+    [Space(10)]
+    [Header("Join/Create Room")]
+    [SerializeField] private GameObject createRoomUI;
+    [SerializeField] private Button createRoomButton;
+
+    [Space(5)]
     [SerializeField] private TMP_InputField inputRoomCodeText;
     [SerializeField] private Button joinRoomButton;
 
+    [Space(5)]
     [SerializeField] private GameObject roomUI;
-    [SerializeField] private GameObject createRoomUI;
 
     private void Awake()
     {
@@ -27,12 +34,14 @@ public class LobbyListUI : MonoBehaviour
 
         lobbyTemplate.gameObject.SetActive(false);
         refreshButton.onClick.AddListener(RefreshButtonClick);
-        createLobbyButton.onClick.AddListener(CreateLobbyButtonClick);  //! Reserved for new UI
+        createRoomButton.onClick.AddListener(CreateLobbyButtonClick);  //! Reserved for new UI
 
         joinRoomButton.onClick.AddListener(() =>
         {
             LobbyManager.Instance.JoinLobbyByCode(inputRoomCodeText.text);
         });
+
+        backButton.onClick.AddListener(LoadMainMenuScene);
     }
 
     private void Start()
@@ -83,6 +92,11 @@ public class LobbyListUI : MonoBehaviour
     //{
     //    throw new NotImplementedException();
     //}
+
+    private void LoadMainMenuScene()
+    {
+        Loader.Load(Loader.Scene.MainMenuScene);
+    }
 
     private void CreateLobbyButtonClick()
     {
