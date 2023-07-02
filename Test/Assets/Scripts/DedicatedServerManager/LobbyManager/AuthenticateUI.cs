@@ -11,7 +11,7 @@ public class AuthenticateUI : MonoBehaviour
     [SerializeField] private GameObject startMenu;
 
     public string playerName {get; private set;}
-    private void Update()
+    private void Awake()
     {
         // Adding listener when the button clicked. It will authenticate the user and open main menu
         // Only run once on production environment
