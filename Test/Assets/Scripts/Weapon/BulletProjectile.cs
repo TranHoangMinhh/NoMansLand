@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class BulletProjectile : MonoBehaviour
+public class BulletProjectile : NetworkBehaviour
 {
     private Rigidbody bulletRigidBody;
 

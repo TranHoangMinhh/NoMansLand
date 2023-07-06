@@ -15,6 +15,7 @@ namespace StarterAssets
 		public bool aim;
 		public bool shoot;
 		public bool crouch;
+		public bool takeDmg;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -61,6 +62,10 @@ namespace StarterAssets
 		{
 			CrouchInput(value.isPressed);
 		}
+		public void OnTakeDmg(InputValue value)
+		{
+			TakeDmgInput(value.isPressed);
+		}
 #endif
 
 
@@ -97,6 +102,11 @@ namespace StarterAssets
 		public void CrouchInput(bool newCrouchState)
 		{
 			crouch = newCrouchState;
+		}
+
+		public void TakeDmgInput(bool newTakeDmgState)
+		{
+			takeDmg = newTakeDmgState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

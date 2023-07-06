@@ -3,6 +3,8 @@
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 using Cinemachine;
+using System.Collections;
+using System.Collections.Generic;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -81,6 +83,19 @@ namespace StarterAssets
 
         public bool Crouch = false;
 
+        public float health = 100f;
+
+        public bool isDeath = false;
+
+        [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
+        [SerializeField] private Transform debugTransform;
+        [SerializeField] private Transform pfBulletProjectile;
+        [SerializeField] private Transform spawnBulletLocation;
+        [SerializeField] private GameObject muzzleFlash;
+        [SerializeField] AudioClip shootingSound;
+        [SerializeField] private List<GameObject> spawnedMuzzle = new List<GameObject>();
+        [SerializeField] private List<GameObject> spawnedBullet = new List<GameObject>();
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -116,7 +131,6 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
-
         private bool IsCurrentDeviceMouse
         {
             get
@@ -179,12 +193,23 @@ namespace StarterAssets
         {
             if (IsOwner)
             {
+                //Vector3 mouseWorldPosition = Vector3.zero;
+                //Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+                //Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+                //if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
+                //{
+                //    debugTransform.position = raycastHit.point;
+                //    mouseWorldPosition = raycastHit.point;
+                //}
                 _hasAnimator = TryGetComponent(out _animator);
 
                 JumpAndGravity();
                 GroundedCheck();
                 Move();
                 Crouching();
+                takeDamage();
+                Die();
+                Shoot();
             }
         }
 
@@ -440,6 +465,62 @@ namespace StarterAssets
                     _input.crouch = false;
                 }
             }
+        }
+
+        private void Shoot()
+        {
+            Vector3 mouseWorldPosition = Vector3.zero;
+            Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
+            {
+                debugTransform.position = raycastHit.point;
+                mouseWorldPosition = raycastHit.point;
+            }
+            if (_input.shoot)
+            {
+                Vector3 aimDir = (mouseWorldPosition - spawnBulletLocation.position).normalized;
+                ShootServerRpc(aimDir);
+                AudioSource.PlayClipAtPoint(shootingSound, spawnBulletLocation.position, 0.5f);
+                _input.shoot = false;
+            }
+        }
+        private void takeDamage()
+        {
+            if (_input.takeDmg)
+            {
+                health -= 20f;
+                _input.takeDmg = false;
+                if (health == 0f)
+                {
+                    isDeath = true;
+                }
+            }
+
+        }
+        private void Die()
+        {
+            if (isDeath == true)
+            {
+                anim.SetBool("isDeath", true);
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<BulletProjectile>() != null)
+            {
+                health -= 20f;
+                if (health == 0f)
+                {
+                    isDeath = true;
+                }
+            }
+        }
+        [ServerRpc]
+        private void ShootServerRpc(Vector3 aimDir)
+        {
+            Transform bullet = Instantiate(pfBulletProjectile, spawnBulletLocation.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            bullet.GetComponent<NetworkObject>().Spawn();
         }
     }
 }
