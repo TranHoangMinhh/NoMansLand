@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4508696319873668}
   - component: {fileID: 198791558892717060}
   - component: {fileID: 199099840506733646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmokeEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 10
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
