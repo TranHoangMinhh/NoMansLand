@@ -73,6 +73,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af85bd807d09e1e4c8c609a9f1163153, type: 3}
+--- !u!4 &7676427564748545758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: af85bd807d09e1e4c8c609a9f1163153, type: 3}
+  m_PrefabInstance: {fileID: 7676427564748670044}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7676427564748702462 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: af85bd807d09e1e4c8c609a9f1163153, type: 3}
@@ -121,4 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoke: {fileID: 1273915125232972, guid: 73767e07adddc394d82b994801f89bbb, type: 3}
-  duration: 0
+  duration: 2
+  transform: {fileID: 7676427564748545758}

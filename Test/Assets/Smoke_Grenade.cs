@@ -1,3 +1,4 @@
+using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class Smoke_Grenade : MonoBehaviour
     public GameObject smoke;
     public float duration;
     MeshRenderer renderer;
+    [SerializeField] private Transform transform;
 
 
     float countdown;
