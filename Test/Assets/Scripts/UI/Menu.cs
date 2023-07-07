@@ -13,7 +13,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private Button quitGameButton;
 
     [SerializeField] private GameObject settingsMenu;
-    [SerializeField] private GameObject inputPlayerName;
+    [SerializeField] private GameObject chooseModeMenu;
 
 
     private void Awake()
@@ -21,7 +21,7 @@ public class Menu : MonoBehaviour
         startBtn.onClick.AddListener(() => 
         {
             Hide();
-            inputPlayerName.SetActive(true);
+            chooseModeMenu.SetActive(true);
         });
         openSettingsButton.onClick.AddListener(() => {
             Hide();

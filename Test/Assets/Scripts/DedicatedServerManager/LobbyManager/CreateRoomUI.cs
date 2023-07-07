@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,11 +11,18 @@ public class CreateRoomUI : MonoBehaviour
     public static CreateRoomUI Instance { get; private set; }
 
     //! Add map options
+    [Header("Room Information")]
     [SerializeField] private TMP_InputField roomNameInputField;
     [SerializeField] private Slider maxPlayerSilder;
     [SerializeField] private Slider durationSlider;
-    [SerializeField] private Toggle isPrivateToggle;
-    [SerializeField] Button createRoomButton;
+
+    [Header("Buttons")]
+    [SerializeField] private Button createRoomButton;
+    [SerializeField] private Button backButton;
+
+    [Header("Navigate Scene")]
+    [SerializeField] private GameObject previousScene;
+    [SerializeField] private TextMeshProUGUI sceneTitle;
 
     private string _roomName;
     private int _maxPlayer;
@@ -35,6 +43,19 @@ public class CreateRoomUI : MonoBehaviour
             LobbyManager.Instance.CreateLobby(_roomName, _maxPlayer, _isPrivate, _duration);
             Hide();
         });
+
+        backButton.onClick.AddListener(GoBackToLobby);
+    }
+
+    private void Start()
+    {
+        sceneTitle.text = "create room";
+    }
+
+    private void GoBackToLobby()
+    {
+        Hide();
+        previousScene.SetActive(true);
     }
 
     private void UpdateInputValue()
@@ -42,7 +63,6 @@ public class CreateRoomUI : MonoBehaviour
         _roomName = roomNameInputField.text;
         _maxPlayer = (int)maxPlayerSilder.value;
         _duration = durationSlider.value.ToString();
-        _isPrivate = isPrivateToggle.isOn;
     }
 
     private void Hide()

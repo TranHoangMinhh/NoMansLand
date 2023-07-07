@@ -11,14 +11,16 @@ public class RoomUI : MonoBehaviour
     
     public static RoomUI Instance { get; private set; }
 
+    [Header("Room Content")]
     [SerializeField] private Transform playerTemplateUI;
     [SerializeField] private Transform playerListContainer;
     [SerializeField] private TextMeshProUGUI roomNameText;
-    [SerializeField] private TextMeshProUGUI playerCountText;
 
+    [Header("Room Code")]
     [SerializeField] private Button roomCodeButton;
     [SerializeField] private TextMeshProUGUI roomCodeText;
 
+    [Header("Buttons")]
     [SerializeField] private Button leaveRoomButton;
     [SerializeField] private Button startGameButton;
 
@@ -36,7 +38,7 @@ public class RoomUI : MonoBehaviour
             LobbyManager.Instance.LeaveLobby();
         });
 
-        roomCodeButton.onClick.AddListener(CopyCodeToClipboard);
+        //roomCodeButton.onClick.AddListener(CopyCodeToClipboard);
         
         startGameButton.onClick.AddListener(StartGame);
     }
@@ -111,7 +113,7 @@ public class RoomUI : MonoBehaviour
 
         roomNameText.text = lobby.Name;
         roomCodeText.text = $"Code: {lobby.LobbyCode}";
-        playerCountText.text = $"{lobby.Players.Count}/{lobby.MaxPlayers} Players";
+        //playerCountText.text = $"{lobby.Players.Count}/{lobby.MaxPlayers} Players";
 
         Show();
     }
@@ -125,6 +127,6 @@ public class RoomUI : MonoBehaviour
     {
         //! Add functions to start the game
         Debug.Log("Start Game!!!");
-        LoadingManager.Instance.LoadScene(1);
+        LoadingManager.Instance.LoadScene(2);
     }
 }

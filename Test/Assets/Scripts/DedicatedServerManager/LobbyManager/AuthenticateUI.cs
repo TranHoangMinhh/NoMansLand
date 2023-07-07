@@ -7,24 +7,34 @@ public class AuthenticateUI : MonoBehaviour
     //! This should be done automatically when running game (if player has input player name before)
 
     [SerializeField] private TMP_InputField playerNameInputField;
-    [SerializeField] private Button authenticateBtn;
+    // [SerializeField] private Button authenticateBtn;
     [SerializeField] private GameObject startMenu;
+    [SerializeField] private GameObject playerProfile;
 
-    public string playerName {get; private set;}
-    private void Awake()
+    // Change background
+    [Space(5)]
+    [SerializeField] private GameObject currentBackground;
+    [SerializeField] private GameObject mainMenuBackground;
+
+    public string playerName { get; private set; }
+
+
+    private void Update()
     {
-        // Adding listener when the button clicked. It will authenticate the user and open main menu
-        // Only run once on production environment
-        // For development environment, it is mandatory to authenticate each time for having multiple player on same machine
-        authenticateBtn.onClick.AddListener(() => {
-            if(playerNameInputField.text != "")
-            {
-                playerName = playerNameInputField.text;
-                LobbyManager.Instance.Authenticate(playerNameInputField.text);
-                Hide();
-                startMenu.SetActive(true);
-            }
-        });
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            playerName = playerNameInputField.text;
+            LobbyManager.Instance.Authenticate(playerNameInputField.text);
+            
+            Hide();
+            
+            startMenu.SetActive(true);
+            playerProfile.SetActive(true);
+            PlayerProfile.Instance.SetPlayerName(playerName);
+
+            currentBackground.SetActive(false);
+            mainMenuBackground.SetActive(true);
+        }
     }
 
     private void Hide()

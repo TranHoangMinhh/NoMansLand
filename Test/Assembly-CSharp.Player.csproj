@@ -99,6 +99,7 @@
     <Compile Include="Assets\POLYGON - FPS free\scripts\blood_floor_particle.cs" />
     <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonBehavior.cs" />
+    <Compile Include="Assets\Scripts\UI\InputfieldBehavior.cs" />
     <Compile Include="Assets\Scripts\ClientNetworkTransform.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\axe.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\find_destory_able_props.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Assets\Scripts\DedicatedServerManager\ServerHandler.cs" />
     <Compile Include="Assets\Scripts\Weapon\BulletProjectile.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\recyle_inst.cs" />
+    <Compile Include="Assets\Shooting.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Assets\Easy FPS\Scripts\BulletScript.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\Scripts\UI\Menu.cs" />
+    <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\PlayerProfile.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\Scripts\TestNetcodeUI.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponInteract.cs" />
@@ -150,6 +153,7 @@
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\AuthenticateUI.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\RoomUI.cs" />
+    <Compile Include="Assets\Scripts\UI\StartButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

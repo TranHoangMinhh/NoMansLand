@@ -22,7 +22,7 @@ public class FPSDisplay : MonoBehaviour
         frameDeltaTimeArray[lastFrameIndex] = Time.deltaTime;
         lastFrameIndex = (lastFrameIndex + 1) % frameDeltaTimeArray.Length;
 
-        uiText.text = "FPS: " + Mathf.RoundToInt(CalculateFPS()).ToString();
+        uiText.text = Mathf.RoundToInt(CalculateFPS()).ToString() + " FPS";
     }
 
     private float CalculateFPS()

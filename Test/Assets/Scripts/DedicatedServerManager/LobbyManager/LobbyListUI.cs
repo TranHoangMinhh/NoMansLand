@@ -10,6 +10,10 @@ public class LobbyListUI : MonoBehaviour
 {
     public static LobbyListUI Instance { get; private set; }
 
+    [Header("Scene Title")]
+    [SerializeField] private TextMeshProUGUI sceneTitle;
+
+    [Space(10)]
     [Header("Lobby List")]
     [SerializeField] private Transform lobbyTemplate;
     [SerializeField] private Transform lobbyListContainer;
@@ -51,6 +55,8 @@ public class LobbyListUI : MonoBehaviour
         LobbyManager.Instance.OnJoinedLobby += LobbyManager_OnJoinedLobby;
         LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnKickedFromLobby;
+
+        sceneTitle.text = "lobby";
     }
 
     private void Hide()

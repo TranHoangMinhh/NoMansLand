@@ -6,25 +6,85 @@ using TMPro;
 
 public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private TextMeshProUGUI m_TextMeshProUGUI;
-    private float defaultFontSize;
 
-    private float increasedFontSize;
+    [SerializeField] private GameObject buttonHoverFX;
+    [SerializeField] private TextMeshProUGUI buttonText;
+    [SerializeField] private bool isQuitButton;
+    [SerializeField] private bool isMainMenuButton = true;
+    [SerializeField] private float increasedPositionX = 95f;
+
+    private float _defaultFontSize;
+    private Vector3 _defaultPosition;
+    private Color _defaultColor;
+
+    private Color _hoverColor;
+    private Vector3 _hoverPosition;
+
+    private StartButton _startButton;
+    private bool _isStartButton;
 
     private void Start()
     {
-        m_TextMeshProUGUI = GetComponent<TextMeshProUGUI>();
-        defaultFontSize = m_TextMeshProUGUI.fontSize;
-        increasedFontSize = m_TextMeshProUGUI.fontSize * 0.25f;
+        _isStartButton = TryGetComponent<StartButton>(out _startButton);
+
+        _defaultFontSize = buttonText.fontSize;
+        _defaultPosition = buttonText.transform.position;
+        _defaultColor = buttonText.color;
+
+        if (isMainMenuButton)
+        {
+            _hoverColor = new Color(0.2392157f, 0.2392157f, 0.2392157f, 1);  // Color code: 3D3D3D (Dark gray)
+            _hoverPosition = new Vector3(buttonText.transform.position.x + increasedPositionX, buttonText.transform.position.y, buttonText.transform.position.z);
+        }
+
+        // Reset effect on start
+        ResetButtonFX();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        m_TextMeshProUGUI.fontSize = m_TextMeshProUGUI.fontSize + increasedFontSize;
+        ButtonHoverFX();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        m_TextMeshProUGUI.fontSize = defaultFontSize;
+        ResetButtonFX();
+    }
+
+    private void ButtonHoverFX()
+    {
+        buttonHoverFX.SetActive(true);
+
+        if (isMainMenuButton)
+        {
+            buttonText.fontSize = 42f;
+
+            if (!isQuitButton)
+                buttonText.color = _hoverColor;
+
+            buttonText.transform.position = _hoverPosition;
+        }
+
+        if (_isStartButton)
+        {
+            StartButton.Instance.OnHoverButtonChange();
+        }
+    }
+
+    private void ResetButtonFX()
+    {
+        buttonHoverFX.SetActive(false);
+
+        if (isMainMenuButton)
+        {
+            buttonText.fontSize = _defaultFontSize;
+            buttonText.color = _defaultColor;
+            buttonText.transform.position = _defaultPosition;
+        }
+
+        if (_isStartButton)
+        {
+            StartButton.Instance.ResetButtonChange();
+        }
     }
 }

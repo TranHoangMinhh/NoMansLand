@@ -322,6 +322,11 @@ public class LobbyManager : MonoBehaviour
         });
     }
 
+    public string GetPlayerName()
+    {
+        return _playerName;
+    }
+
     //! Put update player name on Game Settings
     public async void UpdatePlayerName(string newPlayerName)
     {
