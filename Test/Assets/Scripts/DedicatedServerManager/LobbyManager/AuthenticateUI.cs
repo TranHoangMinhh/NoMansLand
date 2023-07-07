@@ -6,34 +6,27 @@ public class AuthenticateUI : MonoBehaviour
 {
     //! This should be done automatically when running game (if player has input player name before)
 
-    [SerializeField] private TMP_InputField playerNameInputField;
-    // [SerializeField] private Button authenticateBtn;
-    [SerializeField] private GameObject startMenu;
-    [SerializeField] private GameObject playerProfile;
+    [SerializeField] private GameObject playerNameInput;
+    [SerializeField] private TextMeshProUGUI indicatorText;
+    [SerializeField] private GameObject loadingIcon;
 
-    // Change background
-    [Space(5)]
-    [SerializeField] private GameObject currentBackground;
-    [SerializeField] private GameObject mainMenuBackground;
-
-    public string playerName { get; private set; }
+    private string _playerName;
 
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            playerName = playerNameInputField.text;
-            LobbyManager.Instance.Authenticate(playerNameInputField.text);
+            _playerName = playerNameInput.GetComponentInChildren<TMP_InputField>().text;
+            LobbyManager.Instance.Authenticate(_playerName);
             
-            Hide();
+            //Hide();
+            playerNameInput.gameObject.SetActive(false);
+            loadingIcon.gameObject.SetActive(true);
+            indicatorText.text = "Authenticating Player";
             
-            startMenu.SetActive(true);
-            playerProfile.SetActive(true);
-            PlayerProfile.Instance.SetPlayerName(playerName);
-
-            currentBackground.SetActive(false);
-            mainMenuBackground.SetActive(true);
+            // PlayerProfile.Instance.SetPlayerName(_playerName);
+            LoadingManager.Instance.LoadScene(LoadingManager.Scenes.MainMenuScene);
         }
     }
 

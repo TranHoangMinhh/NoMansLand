@@ -73,6 +73,7 @@
     <Compile Include="Assets\Easy FPS\Scripts\MouseLookScript.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\UI\ChooseMode.cs" />
+    <Compile Include="Assets\Scripts\UI\StartButton.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\killer_bunny.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Map\IInteractable.cs" />
@@ -153,7 +154,6 @@
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\AuthenticateUI.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\RoomUI.cs" />
-    <Compile Include="Assets\Scripts\UI\StartButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

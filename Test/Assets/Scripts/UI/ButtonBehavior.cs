@@ -11,7 +11,8 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private TextMeshProUGUI buttonText;
     [SerializeField] private bool isQuitButton;
     [SerializeField] private bool isMainMenuButton = true;
-    [SerializeField] private float increasedPositionX = 95f;
+    
+    private float _increasedPositionTo;
 
     private float _defaultFontSize;
     private Vector3 _defaultPosition;
@@ -29,12 +30,18 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         _defaultFontSize = buttonText.fontSize;
         _defaultPosition = buttonText.transform.position;
+        Debug.Log(buttonText.text);
+        Debug.Log(_defaultPosition);
         _defaultColor = buttonText.color;
 
         if (isMainMenuButton)
         {
+            _increasedPositionTo = 0.2513f * _defaultPosition.x;
+            Debug.Log("Increased: " +  _increasedPositionTo);
+
             _hoverColor = new Color(0.2392157f, 0.2392157f, 0.2392157f, 1);  // Color code: 3D3D3D (Dark gray)
-            _hoverPosition = new Vector3(buttonText.transform.position.x + increasedPositionX, buttonText.transform.position.y, buttonText.transform.position.z);
+            _hoverPosition = new Vector3(_defaultPosition.x + _increasedPositionTo, _defaultPosition.y, _defaultPosition.z);
+            Debug.Log(_hoverPosition);
         }
 
         // Reset effect on start
