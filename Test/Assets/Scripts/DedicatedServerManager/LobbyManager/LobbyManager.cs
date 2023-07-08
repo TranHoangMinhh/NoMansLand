@@ -71,6 +71,9 @@ public class LobbyManager : MonoBehaviour
         LoneIsland
     }
 
+    public int menuBackgroundIndex {  get; set; }
+    public int lobbyBackgroundIndex { get; set; }
+
     // Enum list of map weathers
     public enum Map_Weathers
     {

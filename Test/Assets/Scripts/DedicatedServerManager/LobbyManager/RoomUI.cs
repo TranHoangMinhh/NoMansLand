@@ -99,11 +99,17 @@ public class RoomUI : MonoBehaviour
             playerTemplateTransform.gameObject.SetActive(true);
             PlayerTemplateUI newPlayerTemplate = playerTemplateTransform.GetComponent<PlayerTemplateUI>();
 
+            // Check if this is their own player, i.e. player screen which can be interactable
+            bool isPlayer = player.Id == LobbyManager.Instance.GetPlayerID();
+
             // Set visibility to kick player button. Kick player button only visible to host
             newPlayerTemplate.SetKickPLayerButtonVisible(
                 LobbyManager.Instance.IsLobbyHost() &&
-                player.Id != LobbyManager.Instance.GetPlayerID()  // Not allow player to kick itself
+                !isPlayer  // Not allow player to kick itself
             );
+
+            newPlayerTemplate.SetChangeCharacterButtonVisible( isPlayer );
+            newPlayerTemplate.SetChangeSideWeaponInteractable( isPlayer );
 
             // Update player UI
             newPlayerTemplate.UpdatePlayer(player);

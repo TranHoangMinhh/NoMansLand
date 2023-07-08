@@ -484,6 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 33592547}
   - component: {fileID: 33592546}
+  - component: {fileID: 33592548}
   m_Layer: 0
   m_Name: BackgroundPlayer
   m_TagString: Untagged
@@ -541,6 +542,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &33592548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33592545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6588828370652c147abff9c66eeae5a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipList:
+  - {fileID: 32900000, guid: ce3fd32c10ad5274d808c8d793380043, type: 3}
+  - {fileID: 32900000, guid: f79da9372132476428b88db32f1054cf, type: 3}
+  - {fileID: 32900000, guid: 9f5d67a0f4c1e7d41ad4665909214047, type: 3}
+  - {fileID: 32900000, guid: ee47da69e9a96ca4f81d7eeaddaf6015, type: 3}
+  player: {fileID: 33592546}
 --- !u!1 &41823538
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,6 +3829,7 @@ GameObject:
   - component: {fileID: 1100415065}
   - component: {fileID: 1100415064}
   - component: {fileID: 1100415068}
+  - component: {fileID: 1100415069}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3924,6 +3944,25 @@ MonoBehaviour:
   - {fileID: 1019179302}
   enableComponents:
   - {fileID: 313273965}
+--- !u!114 &1100415069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100415063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b2b9c8b2bf9794eb220db7ae442322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapBackgroundList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  background: {fileID: 0}
+  generateRandomIndex: 0
 --- !u!1 &1107099165
 GameObject:
   m_ObjectHideFlags: 0

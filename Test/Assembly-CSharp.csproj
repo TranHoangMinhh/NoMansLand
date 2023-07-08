@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\POLYGON - FPS free\scripts\destory_simple.cs" />
     <Compile Include="Assets\ThrowGrenade.cs" />
+    <Compile Include="Assets\Scripts\UI\BackgroundRandomLoader.cs" />
     <Compile Include="Assets\Scripts\Map\Loot.cs" />
     <Compile Include="Assets\Scripts\ProjectileGunTutorial.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\PlayerMovementScript.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Easy FPS\Scripts\MouseLookScript.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\UI\ChooseMode.cs" />
+    <Compile Include="Assets\Scripts\UI\StartButton.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\killer_bunny.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Map\IInteractable.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Assets\Scripts\UI\MinimapFollowCamera.cs" />
     <Compile Include="Assets\Scripts\UI\Healthbar.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\petrol_can.cs" />
+    <Compile Include="Assets\Scripts\UI\VideoRandomLoader.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\BulletScript.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
     <Compile Include="Assets\Scripts\UI\Menu.cs" />
@@ -153,7 +156,6 @@
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\AuthenticateUI.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\RoomUI.cs" />
-    <Compile Include="Assets\Scripts\UI\StartButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
