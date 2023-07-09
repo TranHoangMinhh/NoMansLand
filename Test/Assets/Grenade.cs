@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Grenade : MonoBehaviour
+public class Grenade : NetworkBehaviour
 {
     public int damage = 50;
     public float delay = 3f;

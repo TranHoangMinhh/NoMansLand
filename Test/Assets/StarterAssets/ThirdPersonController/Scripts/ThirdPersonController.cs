@@ -87,14 +87,24 @@ namespace StarterAssets
 
         public bool isDeath = false;
 
+        [Header("Aim & Shoot")]
         [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
         [SerializeField] private Transform debugTransform;
         [SerializeField] private Transform pfBulletProjectile;
         [SerializeField] private Transform spawnBulletLocation;
         [SerializeField] private GameObject muzzleFlash;
+        [SerializeField] private Transform VFXBlood;
         [SerializeField] AudioClip shootingSound;
         [SerializeField] private List<GameObject> spawnedMuzzle = new List<GameObject>();
         [SerializeField] private List<GameObject> spawnedBullet = new List<GameObject>();
+
+        [Header("Bomb")]
+        public GameObject smokeGrenadePrefab;
+        public GameObject explosionGrenadePrefab;
+        public float throwForce = 10f;
+        public int grenadeDamage = 50;
+        public float explosionRadius = 10f;
+        public GameObject spawnGrenadeLoc;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -210,6 +220,15 @@ namespace StarterAssets
                 takeDamage();
                 Die();
                 Shoot();
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    ThrowSmokeGrenade();
+                }
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    ThrowExplosionGrenade();
+                }
             }
         }
 
@@ -509,6 +528,7 @@ namespace StarterAssets
         {
             if (other.GetComponent<BulletProjectile>() != null)
             {
+                SpawnBloodOnCollideWBulletServerRpc();
                 health -= 20f;
                 if (health == 0f)
                 {
@@ -516,11 +536,55 @@ namespace StarterAssets
                 }
             }
         }
+        private void ThrowSmokeGrenade()
+        {
+            ThrowSmokeGrenadeServerRpc();
+        }
+        private void ThrowExplosionGrenade()
+        {
+            // Instantiate the explosion grenade prefab
+            ThrowExplosionGrenadeServerRpc();
+
+            // Get the forward direction of the player's camera
+            Vector3 throwDirection = spawnGrenadeLoc.transform.forward;
+
+            // Apply the throw force to the explosion grenade in the throw direction
+        }
         [ServerRpc]
         private void ShootServerRpc(Vector3 aimDir)
         {
             Transform bullet = Instantiate(pfBulletProjectile, spawnBulletLocation.position, Quaternion.LookRotation(aimDir, Vector3.up));
             bullet.GetComponent<NetworkObject>().Spawn();
+        }
+        [ServerRpc]
+        private void SpawnBloodOnCollideWBulletServerRpc()
+        {
+            Transform bloodEffect = Instantiate(VFXBlood, transform.position, Quaternion.identity);
+            bloodEffect.GetComponent<NetworkObject>().Spawn();
+        }
+        [ServerRpc]
+        private void ThrowSmokeGrenadeServerRpc()
+        {
+            // Instantiate the smoke grenade prefab
+            GameObject smokeGrenade = Instantiate(smokeGrenadePrefab, transform.position, Quaternion.identity);
+            smokeGrenade.GetComponent<NetworkObject>().Spawn();
+
+            // Get the forward direction of the player's camera
+            Vector3 throwDirection = spawnGrenadeLoc.transform.forward;
+
+            // Apply the throw force to the smoke grenade in the throw direction
+            Rigidbody rb = smokeGrenade.GetComponent<Rigidbody>();
+            rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+
+        }
+        [ServerRpc]
+        private void ThrowExplosionGrenadeServerRpc()
+        {
+            GameObject explosionGrenade = Instantiate(explosionGrenadePrefab, transform.position, Quaternion.identity);
+            explosionGrenade.GetComponent<NetworkObject>().Spawn();
+            Rigidbody rb = explosionGrenade.GetComponent<Rigidbody>();
+            Vector3 throwDirection = spawnGrenadeLoc.transform.forward;
+            rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
         }
     }
 }

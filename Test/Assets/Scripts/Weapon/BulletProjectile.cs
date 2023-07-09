@@ -6,6 +6,7 @@ using Unity.Netcode;
 public class BulletProjectile : NetworkBehaviour
 {
     private Rigidbody bulletRigidBody;
+    [SerializeField] private Transform bloodVFX;
 
     private void Awake()
     {
@@ -18,6 +19,16 @@ public class BulletProjectile : NetworkBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<BulletProjectile>() != null)
+        {
+            
+        }
         Destroy(gameObject);
+    }
+    [ServerRpc]
+    private void bloodEffectServerRpc()
+    {
+        Transform bloodEffect= Instantiate(bloodVFX, transform.position, Quaternion.identity);
+        bloodEffect.GetComponent<NetworkObject>();
     }
 }
