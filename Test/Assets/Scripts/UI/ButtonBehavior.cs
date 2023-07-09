@@ -10,7 +10,14 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private GameObject buttonHoverFX;
     [SerializeField] private TextMeshProUGUI buttonText;
     [SerializeField] private bool isQuitButton;
-    [SerializeField] private bool isMainMenuButton = true;
+
+    private enum ButtonType
+    {
+        None,
+        MainMenuButton,
+        ChooseCharacterButton
+    }
+    [SerializeField] private ButtonType buttonType;
     
     private float _increasedPositionTo;
 
@@ -28,11 +35,14 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         _isStartButton = TryGetComponent<StartButton>(out _startButton);
 
-        _defaultFontSize = buttonText.fontSize;
-        _defaultPosition = buttonText.transform.position;
-        _defaultColor = buttonText.color;
+        if (buttonText != null)
+        {
+            _defaultFontSize = buttonText.fontSize;
+            _defaultPosition = buttonText.transform.position;
+            _defaultColor = buttonText.color;
+        }
 
-        if (isMainMenuButton)
+        if (buttonType.ToString() == "MainMenuButton")
         {
             _increasedPositionTo = 0.2513f * _defaultPosition.x;
 
@@ -57,8 +67,9 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private void ButtonHoverFX()
     {
         buttonHoverFX.SetActive(true);
+        //Debug.Log(buttonType.ToString());
 
-        if (isMainMenuButton)
+        if (buttonType.ToString() == "MainMenuButton")
         {
             buttonText.fontSize = 42f;
 
@@ -78,7 +89,7 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         buttonHoverFX.SetActive(false);
 
-        if (isMainMenuButton)
+        if (buttonType.ToString() == "MainMenuButton")
         {
             buttonText.fontSize = _defaultFontSize;
             buttonText.color = _defaultColor;

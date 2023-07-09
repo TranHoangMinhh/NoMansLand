@@ -6,10 +6,10 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoomUI : MonoBehaviour
+public class ChooseCharacterUI : MonoBehaviour
 {
     
-    public static RoomUI Instance { get; private set; }
+    public static ChooseCharacterUI Instance { get; private set; }
 
     [Header("Room Content")]
     [SerializeField] private Transform playerTemplateUI;

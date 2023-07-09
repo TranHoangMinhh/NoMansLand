@@ -155,7 +155,7 @@
     <Compile Include="Assets\Scripts\Map\WeaponsSpawn.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\AuthenticateUI.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\RoomUI.cs" />
+    <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\ChooseCharacterUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
