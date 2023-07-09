@@ -11,6 +11,7 @@ public static class Loader
     {
         MainMenuScene,
         GameScene,
+        CharacterSelectScene,
         LoadingScene,
         LobbyScene,
     }

@@ -133,6 +133,6 @@ public class RoomUI : MonoBehaviour
     {
         //! Add functions to start the game
         Debug.Log("Start Game!!!");
-        LoadingManager.Instance.LoadScene(LoadingManager.Scenes.GameScene);
+        Loader.LoadNetwork(Loader.Scene.CharacterSelectScene);
     }
 }

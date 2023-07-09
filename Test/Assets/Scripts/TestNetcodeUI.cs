@@ -37,12 +37,12 @@ public class TestNetcodeUI : MonoBehaviour
 
          serverBtn.onClick.AddListener(() => {
 
-           ServerHandler.Instance.StartServer();
+           NMLGameMultiplayer.Instance.StartServer();
 
          });
          hostBtn.onClick.AddListener(() => {
 
-            ServerHandler.Instance.StartHost();
+            NMLGameMultiplayer.Instance.StartHost();
 
          });
          clientBtn.onClick.AddListener(() => {
@@ -63,7 +63,7 @@ public class TestNetcodeUI : MonoBehaviour
                     connectPort = (ushort)int.Parse(port.text);
                 }
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(clientIP, connectPort);
-                if(ServerHandler.Instance.StartClient())
+                if(NMLGameMultiplayer.Instance.StartClient())
                 {
                     IP.gameObject.SetActive(false);
                     port.gameObject.SetActive(false);
