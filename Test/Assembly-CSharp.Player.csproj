@@ -60,6 +60,7 @@
     <Compile Include="Assets\ThrowGrenade.cs" />
     <Compile Include="Assets\Scripts\UI\BackgroundRandomLoader.cs" />
     <Compile Include="Assets\Scripts\Map\Loot.cs" />
+    <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\CharacterSprites.cs" />
     <Compile Include="Assets\Scripts\ProjectileGunTutorial.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\PlayerMovementScript.cs" />
     <Compile Include="Assets\StarterAssets\FirstPersonController\Scripts\FirstPersonController.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\POLYGON - FPS free\scripts\killer_bunny.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Map\IInteractable.cs" />
+    <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\ChooseObjectInfo.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\GunInventory.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
     <Compile Include="Assets\Scripts\Map\WeaponSpawnController.cs" />
@@ -93,6 +95,8 @@
     <Compile Include="Assets\Scripts\DedicatedServerManager\dservermanual.cs" />
     <Compile Include="Assets\Scripts\UI\CameraReplaceShader.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteractUI.cs" />
+    <Compile Include="Assets\Scripts\UI\CharacterSelectReady.cs" />
+    <Compile Include="Assets\Scripts\DedicatedServerManager\NMLGameMultiplayer.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\PlayerTemplateUI.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\LobbyManager.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\AdjustTimeScale.cs" />
@@ -107,7 +111,7 @@
     <Compile Include="Assets\POLYGON - FPS free\scripts\find_destory_able_props.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\old_pistol.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\laser_script.cs" />
-    <Compile Include="Assets\Scripts\DedicatedServerManager\ServerHandler.cs" />
+    <Compile Include="Assets\Scripts\DedicatedServerManager\NMLGameManager.cs" />
     <Compile Include="Assets\Scripts\Weapon\BulletProjectile.cs" />
     <Compile Include="Assets\POLYGON - FPS free\scripts\recyle_inst.cs" />
     <Compile Include="Assets\Shooting.cs" />

@@ -42,6 +42,7 @@ public class CreateRoomUI : MonoBehaviour
             UpdateInputValue();  // Update player's choice and input on the UI
             NMLGameMultiplayer.Instance.StartHost();
             LobbyManager.Instance.CreateLobby(_roomName, _maxPlayer, _isPrivate, _duration);
+            //LoadingManager.Instance.LoadScene(LoadingManager.Scenes.ChooseScene);
             Hide();
         });
 

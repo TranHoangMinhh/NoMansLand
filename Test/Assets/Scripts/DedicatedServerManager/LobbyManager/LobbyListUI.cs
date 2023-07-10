@@ -29,9 +29,6 @@ public class LobbyListUI : MonoBehaviour
     [SerializeField] private TMP_InputField inputRoomCodeText;
     [SerializeField] private Button joinRoomButton;
 
-    [Space(5)]
-    [SerializeField] private GameObject roomUI;
-
     private void Awake()
     {
         Instance = this;
@@ -78,19 +75,20 @@ public class LobbyListUI : MonoBehaviour
     private void LobbyManager_OnJoinedLobby(object sender, LobbyManager.LobbyEventArgs e)
     {
         Hide();
-        roomUI.SetActive(true);
+        //roomUI.SetActive(true);
+        LoadingManager.Instance.LoadScene(LoadingManager.Scenes.ChooseScene);
     }
 
     private void LobbyManager_OnLeftLobby(object sender, EventArgs e)
     {
         Show();
-        roomUI.SetActive(false);
+        //roomUI.SetActive(false);
     }
 
     private void LobbyManager_OnKickedFromLobby(object sender, LobbyManager.LobbyEventArgs e)
     {
         Show();
-        roomUI.SetActive(false);
+        //roomUI.SetActive(false);
     }
 
     //! Reserved for new UI
