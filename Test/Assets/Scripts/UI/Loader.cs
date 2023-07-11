@@ -12,8 +12,10 @@ public static class Loader
         MainMenuScene,
         GameScene,
         CharacterSelectScene,
+        ChooseScene,
         LoadingScene,
         LobbyScene,
+
     }
 
     private static Scene targetScene;

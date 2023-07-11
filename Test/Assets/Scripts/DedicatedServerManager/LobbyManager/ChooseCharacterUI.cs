@@ -167,6 +167,6 @@ public class ChooseCharacterUI : MonoBehaviour
     {
         //! Add functions to start the game
         //Debug.Log("Start Game!!!");
-        Loader.LoadNetwork(Loader.Scene.CharacterSelectScene);
+        Loader.LoadNetwork(Loader.Scene.ChooseScene);
     }
 }
