@@ -95,7 +95,6 @@
     <Compile Include="Assets\Scripts\DedicatedServerManager\dservermanual.cs" />
     <Compile Include="Assets\Scripts\UI\CameraReplaceShader.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteractUI.cs" />
-    <Compile Include="Assets\Scripts\UI\CharacterSelectReady.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\NMLGameMultiplayer.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\PlayerTemplateUI.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\LobbyManager.cs" />
@@ -160,6 +159,11 @@
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\AuthenticateUI.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\ChooseCharacterUI.cs" />
+    <Compile Include="Assets\Scripts\UI\CharacterSelectScene\PlayerVisual.cs" />
+    <Compile Include="Assets\Scripts\UI\CharacterSelectScene\CharacterSelectReady.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerSetup.cs" />
+    <Compile Include="Assets\Scripts\UI\CharacterSelectScene\CharacterLockIn.cs" />
+    <Compile Include="Assets\Scripts\UI\CharacterSelectScene\CharacterSkinSelectUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

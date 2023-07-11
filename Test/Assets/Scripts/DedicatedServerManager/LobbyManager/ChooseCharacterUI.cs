@@ -88,6 +88,8 @@ public class ChooseCharacterUI : MonoBehaviour
                 SetCharacterObjectActive(button.GetComponent<ChooseObjectInfo>().GetCharacterType());
                 characterNameText.text = button.GetComponent<ChooseObjectInfo>().GetCharacterType().ToString();
 
+                RemoveSelectedFX();
+
                 if (!character.activeSelf)
                 {
                     character.SetActive(true);
@@ -116,6 +118,17 @@ public class ChooseCharacterUI : MonoBehaviour
         {
             if (child.name != "root")
                 child.gameObject.SetActive(false);
+        }
+    }
+
+    private void RemoveSelectedFX()
+    {
+        foreach (Button button in changeCharacterButtonList)
+        {
+            if (button.GetComponent<ButtonBehavior>().HasChooseCharacter())
+            {
+                button.GetComponent<ButtonBehavior>().RemoveChooseCharacter();
+            }
         }
     }
 

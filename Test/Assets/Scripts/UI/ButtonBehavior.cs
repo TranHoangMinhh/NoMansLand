@@ -12,6 +12,7 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private GameObject buttonHoverFX;
     [SerializeField] private TextMeshProUGUI buttonText;
     [SerializeField] private bool isQuitButton;
+    [SerializeField] private GameObject selectedFX;
 
     private enum ButtonType
     {
@@ -33,6 +34,7 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private StartButton _startButton;
     private bool _isStartButton;
 
+
     private void Start()
     {
         _isStartButton = TryGetComponent<StartButton>(out _startButton);
@@ -50,6 +52,11 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
             _hoverColor = new Color(0.2392157f, 0.2392157f, 0.2392157f, 1);  // Color code: 3D3D3D (Dark gray)
             _hoverPosition = new Vector3(_defaultPosition.x + _increasedPositionTo, _defaultPosition.y, _defaultPosition.z);
+        }
+
+        if (buttonType.ToString() == "ChooseCharacterButton")
+        {
+            GetComponent<Button>().onClick.AddListener(ChooseCharacter);
         }
 
         // Reset effect on start
@@ -106,6 +113,16 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void ChooseCharacter()
     {
+        selectedFX.SetActive(true);
+    }
 
+    public void RemoveChooseCharacter()
+    {
+        selectedFX.SetActive(false);
+    }
+
+    public bool HasChooseCharacter()
+    {
+        return selectedFX.activeSelf;
     }
 }
