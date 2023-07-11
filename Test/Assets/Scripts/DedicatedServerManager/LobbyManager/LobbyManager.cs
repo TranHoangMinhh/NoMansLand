@@ -41,15 +41,15 @@ public class LobbyManager : MonoBehaviour
     // Enum list of characters
     public enum PlayerCharacter
     {
+        Daughter_01,
         Father_01,
         Father_02,
         Mother_01,
         Mother_02,
-        Daughter,
-        Son,
-        Schoolboy,
-        Schoolgirl,
-        Shopkeeper
+        SchoolBoy_01,
+        SchoolGirl_01,
+        ShopKeeper_01,
+        Son_01
     }
 
     // Enum list of side weapons

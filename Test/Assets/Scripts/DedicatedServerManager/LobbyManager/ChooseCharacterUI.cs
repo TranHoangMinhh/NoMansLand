@@ -14,17 +14,20 @@ public class ChooseCharacterUI : MonoBehaviour
     [Header("Room Content")]
     [SerializeField] private Transform playerTemplateUI;
     [SerializeField] private Transform playerListContainer;
-    [SerializeField] private TextMeshProUGUI roomNameText;
+    [SerializeField] private List<Button> changeCharacterButtonList;
+    [SerializeField] private Transform characterShowcase;
+    [SerializeField] private TextMeshProUGUI characterNameText;
 
-    [Header("Room Code")]
-    [SerializeField] private Button roomCodeButton;
-    [SerializeField] private TextMeshProUGUI roomCodeText;
+    //[Header("Room Code")]
+    //[SerializeField] private Button roomCodeButton;
+    //[SerializeField] private TextMeshProUGUI roomCodeText;
 
-    [Header("Buttons")]
-    [SerializeField] private Button leaveRoomButton;
-    [SerializeField] private Button startGameButton;
+    //[Header("Buttons")]
+    //[SerializeField] private Button leaveRoomButton;
+    //[SerializeField] private Button startGameButton;
 
     private string _roomCode;
+    private List<Transform> _characterList;
 
 
     private void Awake()
@@ -32,15 +35,11 @@ public class ChooseCharacterUI : MonoBehaviour
         Instance = this;
 
         playerTemplateUI.gameObject.SetActive(false);
-        
-        // Adding listener when the button clicked
-        leaveRoomButton.onClick.AddListener(() => {
-            LobbyManager.Instance.LeaveLobby();
-        });
+
+        LoadButtonList();
 
         //roomCodeButton.onClick.AddListener(CopyCodeToClipboard);
-        
-        startGameButton.onClick.AddListener(StartGame);
+        //startGameButton.onClick.AddListener(StartGame);
     }
 
     private void Start()
@@ -50,7 +49,7 @@ public class ChooseCharacterUI : MonoBehaviour
         LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
 
-        Hide();
+        //Hide();
     }
 
     private void UpdateLobby_Event(object sender, LobbyManager.LobbyEventArgs e)
@@ -72,6 +71,44 @@ public class ChooseCharacterUI : MonoBehaviour
     private void Show()
     {
         gameObject.SetActive(true);
+    }
+
+    // Add button function to all choose character button
+    private void LoadButtonList()
+    {
+
+        foreach (Button button in changeCharacterButtonList)
+        {
+            button.onClick.AddListener(() =>
+            {
+                LobbyManager.Instance.UpdatePlayerCharacter(button.GetComponent<ChooseObjectInfo>().GetCharacterType());
+                SetCharacterObjectActive(button.GetComponent<ChooseObjectInfo>().GetCharacterType());
+                characterNameText.text = button.GetComponent<ChooseObjectInfo>().GetCharacterType().ToString();
+            });
+        }
+    }
+
+    private void SetCharacterObjectActive(LobbyManager.PlayerCharacter character)
+    {
+        string characterString = "Character_" + character.ToString();
+        foreach (Transform child in characterShowcase)
+        {
+            if (child.name == characterString)
+            {
+                DisableAllCharacterObject();
+                child.gameObject.SetActive(true);
+                break;
+            }
+        }
+    }
+
+    private void DisableAllCharacterObject()
+    {
+        foreach (Transform child in characterShowcase)
+        {
+            if (child.name != "root")
+                child.gameObject.SetActive(false);
+        }
     }
 
     private void ClearRoom()
@@ -108,17 +145,14 @@ public class ChooseCharacterUI : MonoBehaviour
                 !isPlayer  // Not allow player to kick itself
             );
 
-            newPlayerTemplate.SetChangeCharacterButtonVisible( isPlayer );
-            newPlayerTemplate.SetChangeSideWeaponInteractable( isPlayer );
-
             // Update player UI
             newPlayerTemplate.UpdatePlayer(player);
         }
 
         _roomCode = lobby.LobbyCode;
 
-        roomNameText.text = lobby.Name;
-        roomCodeText.text = $"Code: {lobby.LobbyCode}";
+        //roomNameText.text = lobby.Name;
+        //roomCodeText.text = $"Code: {lobby.LobbyCode}";
         //playerCountText.text = $"{lobby.Players.Count}/{lobby.MaxPlayers} Players";
 
         Show();
@@ -132,7 +166,7 @@ public class ChooseCharacterUI : MonoBehaviour
     private void StartGame()
     {
         //! Add functions to start the game
-        Debug.Log("Start Game!!!");
+        //Debug.Log("Start Game!!!");
         Loader.LoadNetwork(Loader.Scene.CharacterSelectScene);
     }
 }

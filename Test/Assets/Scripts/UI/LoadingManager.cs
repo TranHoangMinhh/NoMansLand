@@ -18,6 +18,7 @@ public class LoadingManager : MonoBehaviour
         StartScene,
         MainMenuScene,
         LobbyScene,
+        ChooseScene,
         GameScene
     }
 

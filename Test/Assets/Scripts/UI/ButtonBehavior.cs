@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
+using UnityEngine.UI;
 
 public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -100,5 +102,10 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             StartButton.Instance.ResetButtonChange();
         }
+    }
+
+    private void ChooseCharacter()
+    {
+
     }
 }
