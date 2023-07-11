@@ -3,6 +3,7 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Unity.Netcode;
 
 public class PlayerTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {

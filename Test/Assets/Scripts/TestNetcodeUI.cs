@@ -63,12 +63,10 @@ public class TestNetcodeUI : MonoBehaviour
                     connectPort = (ushort)int.Parse(port.text);
                 }
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(clientIP, connectPort);
-                if(NMLGameMultiplayer.Instance.StartClient())
-                {
-                    IP.gameObject.SetActive(false);
-                    port.gameObject.SetActive(false);
-                    ipConnectBtn.gameObject.SetActive(false);
-                }   
+                
+                IP.gameObject.SetActive(false);
+                port.gameObject.SetActive(false);
+                ipConnectBtn.gameObject.SetActive(false);
             });
 
         });
