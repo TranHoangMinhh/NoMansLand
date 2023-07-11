@@ -33,7 +33,7 @@ public class CharacterSprites : MonoBehaviour
             _characterDictionary.Add(character, charactersList[index]);
             index++;
         }
-    }
+    }   
 
     public Sprite GetCharacterSprite(LobbyManager.PlayerCharacter character)
     {

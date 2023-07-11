@@ -50,7 +50,15 @@ public class PlayerTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExi
         LobbyManager.PlayerCharacter playerCharacter = System.Enum.Parse<LobbyManager.PlayerCharacter>(player.Data[LobbyManager.KEY_PLAYER_CHARACTER].Value);
 
         playerCharacterImage.sprite = CharacterSprites.Instance.GetCharacterSprite(playerCharacter);
-        playerCharacterText.text = playerCharacter.ToString();
+
+        if (playerCharacter != LobbyManager.PlayerCharacter.None)
+        {
+            playerCharacterText.text = playerCharacter.ToString();
+        }
+        else
+        {
+            playerCharacterText.text = "(Picking...)";
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

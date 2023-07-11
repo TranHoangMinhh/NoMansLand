@@ -41,6 +41,7 @@ public class LobbyManager : MonoBehaviour
     // Enum list of characters
     public enum PlayerCharacter
     {
+        None,
         Daughter_01,
         Father_01,
         Father_02,
@@ -55,11 +56,11 @@ public class LobbyManager : MonoBehaviour
     // Enum list of side weapons
     public enum SideWeapon
     {
+        None,
         Knife,
         Pistol,
         Revolver,
         Grenade,
-        C4,
         Smoke
     }
 
@@ -320,7 +321,7 @@ public class LobbyManager : MonoBehaviour
         // Return a new Player with data of player name, character and side weapon
         return new Player(_playerID, null, new Dictionary<string, PlayerDataObject> {
             { KEY_PLAYER_NAME, new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, _playerName)},
-            { KEY_PLAYER_CHARACTER, new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, PlayerCharacter.Father_01.ToString()) },
+            { KEY_PLAYER_CHARACTER, new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, PlayerCharacter.None.ToString()) },
             { KEY_SIDE_WEAPON, new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, SideWeapon.Knife.ToString()) }
         });
     }

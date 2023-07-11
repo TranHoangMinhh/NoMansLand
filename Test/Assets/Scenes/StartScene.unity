@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -468,6 +468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 545367673}
+  - component: {fileID: 545367674}
   m_Layer: 5
   m_Name: PlayerNameInput
   m_TagString: Untagged
@@ -497,6 +498,20 @@ RectTransform:
   m_AnchoredPosition: {x: 140, y: -497}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &545367674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545367672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a028bb919ce874092c8c15a95f036e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputFieldOutline: {fileID: 1305559382}
+  inputField: {fileID: 1971919064}
 --- !u!1 &557348917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1305559383
 RectTransform:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class ChooseCharacterUI : MonoBehaviour
     [Header("Room Content")]
     [SerializeField] private Transform playerTemplateUI;
     [SerializeField] private Transform playerListContainer;
-    [SerializeField] private List<Button> changeCharacterButtonList;
+    [SerializeField] private GameObject character;
     [SerializeField] private Transform characterShowcase;
     [SerializeField] private TextMeshProUGUI characterNameText;
 
@@ -22,7 +22,8 @@ public class ChooseCharacterUI : MonoBehaviour
     //[SerializeField] private Button roomCodeButton;
     //[SerializeField] private TextMeshProUGUI roomCodeText;
 
-    //[Header("Buttons")]
+    [Header("Buttons")]
+    [SerializeField] private List<Button> changeCharacterButtonList;
     //[SerializeField] private Button leaveRoomButton;
     //[SerializeField] private Button startGameButton;
 
@@ -39,7 +40,7 @@ public class ChooseCharacterUI : MonoBehaviour
         LoadButtonList();
 
         //roomCodeButton.onClick.AddListener(CopyCodeToClipboard);
-        //startGameButton.onClick.AddListener(StartGame);
+        //startGameButton.onClick.AddListener(StartGame); 
     }
 
     private void Start()
@@ -48,6 +49,8 @@ public class ChooseCharacterUI : MonoBehaviour
         LobbyManager.Instance.OnJoinedLobbyUpdate += UpdateLobby_Event;
         LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
+
+        character.SetActive(false);
 
         //Hide();
     }
@@ -84,6 +87,11 @@ public class ChooseCharacterUI : MonoBehaviour
                 LobbyManager.Instance.UpdatePlayerCharacter(button.GetComponent<ChooseObjectInfo>().GetCharacterType());
                 SetCharacterObjectActive(button.GetComponent<ChooseObjectInfo>().GetCharacterType());
                 characterNameText.text = button.GetComponent<ChooseObjectInfo>().GetCharacterType().ToString();
+
+                if (!character.activeSelf)
+                {
+                    character.SetActive(true);
+                }
             });
         }
     }
