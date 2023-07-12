@@ -98,7 +98,7 @@ public class ChooseCharacterUI : MonoBehaviour
         }
     }
 
-    private void SetCharacterObjectActive(LobbyManager.PlayerCharacter character)
+    public void SetCharacterObjectActive(LobbyManager.PlayerCharacter character)
     {
         string characterString = "Character_" + character.ToString();
         foreach (Transform child in characterShowcase)
@@ -134,10 +134,15 @@ public class ChooseCharacterUI : MonoBehaviour
 
     private void ClearRoom()
     {
+        Debug.Log("Clear Room");
         foreach (Transform child in playerListContainer)
         {
-            if (child == playerTemplateUI) continue;
-            Destroy(child.gameObject);
+            if (child != null)
+            {
+                if (child == playerTemplateUI) continue;
+                Destroy(child.gameObject);
+                Debug.Log("Destroy child");
+            }
         }
     }
 
@@ -149,6 +154,7 @@ public class ChooseCharacterUI : MonoBehaviour
     private void UpdateRoom(Lobby lobby)
     {
         ClearRoom();
+        Debug.Log("Room Cleared");
 
         foreach (Player player in lobby.Players)
         {
