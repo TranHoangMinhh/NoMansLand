@@ -176,7 +176,7 @@ public class LobbyManager : MonoBehaviour
             _lobbyUpdateTimer -= Time.deltaTime;
             if (_lobbyUpdateTimer < 0f)
             {
-                float lobbyUpdateTimerMax = 2f;
+                float lobbyUpdateTimerMax = 1.1f;
                 _lobbyUpdateTimer = lobbyUpdateTimerMax;
 
                 _joinedLobby = await LobbyService.Instance.GetLobbyAsync(_joinedLobby.Id);

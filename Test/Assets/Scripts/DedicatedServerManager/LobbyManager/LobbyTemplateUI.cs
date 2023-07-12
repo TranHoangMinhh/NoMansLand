@@ -18,8 +18,8 @@ public class LobbyTemplateUI : MonoBehaviour
         // Add listener for click action: user will join lobby on click using lobby ID
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            NMLGameMultiplayer.Instance.StartClient();
             LobbyManager.Instance.JoinLobbyByID(_lobby);
+            NMLGameMultiplayer.Instance.StartClient();
         });
     }
 
