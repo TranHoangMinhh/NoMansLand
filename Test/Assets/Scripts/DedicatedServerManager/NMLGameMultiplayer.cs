@@ -108,10 +108,6 @@ public class NMLGameMultiplayer : NetworkBehaviour
 
     private void PlayerDataNetworkList_OnListChanged(NetworkListEvent<PlayerData> changeEvent) {
         OnPlayerDataNetworkListChanged?.Invoke(this, EventArgs.Empty);
-        foreach (PlayerData player in playerDataNetworkList)
-        {
-            Debug.Log($"Client {player.clientId} + {player.playerName}");
-        }
     }
 
     private void NetworkManager_Client_OnClientDisconnectCallback(ulong clientId)
@@ -161,10 +157,10 @@ public class NMLGameMultiplayer : NetworkBehaviour
 
     [ServerRpc(RequireOwnership = false)]
     private void ChangePlayerSkinServerRpc(int skinId, ServerRpcParams serverRpcParams = default) {
-        if (!IsSkinAvailable(skinId)) {
+        /*if (!IsSkinAvailable(skinId)) {
             // Color not available
             return;
-        }
+        }*/
 
         int playerDataIndex = GetPlayerDataIndexFromClientId(serverRpcParams.Receive.SenderClientId);
 
@@ -191,5 +187,12 @@ public class NMLGameMultiplayer : NetworkBehaviour
         NetworkManager_Server_OnClientDisconnectCallback(clientId);
     }
 
+    public void PrintDataNetworkList()
+    {
+        foreach(PlayerData playerData in playerDataNetworkList)
+        {
+            Debug.Log($"client ID: {playerData.clientId} - player name: {playerData.playerName} - player Id: {playerData.playerId} - skin Id: {playerData.skinId}");
+        }
+    }
 
 }

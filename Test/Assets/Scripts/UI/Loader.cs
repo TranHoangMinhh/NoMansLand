@@ -13,7 +13,6 @@ public static class Loader
         GameScene,
         CharacterSelectScene,
         ChooseScene,
-        LoadingScene,
         LobbyScene,
 
     }

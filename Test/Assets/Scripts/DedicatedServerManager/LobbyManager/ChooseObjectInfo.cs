@@ -6,8 +6,9 @@ public class ChooseObjectInfo : MonoBehaviour
 {
 
     [SerializeField] private LobbyManager.PlayerCharacter characterType;
-    public int characterIndex;
+    [SerializeField] private int characterIndex;
 
     public LobbyManager.PlayerCharacter GetCharacterType() { return characterType; }
+    public int GetCharacterIndex() { return characterIndex; }
 
 }

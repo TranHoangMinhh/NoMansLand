@@ -24,8 +24,12 @@ public class ChooseCharacterUI : MonoBehaviour
 
     [Header("Buttons")]
     [SerializeField] private List<Button> changeCharacterButtonList;
+
+    [SerializeField] private Button LockInButton;
     //[SerializeField] private Button leaveRoomButton;
     //[SerializeField] private Button startGameButton;
+
+    private Dictionary<int, Transform> characterSkinsDictionary;
 
     private string _roomCode;
     private List<Transform> _characterList;
@@ -38,9 +42,11 @@ public class ChooseCharacterUI : MonoBehaviour
         playerTemplateUI.gameObject.SetActive(false);
 
         LoadButtonList();
+        characterSkinsDictionary = new Dictionary<int, Transform>();
 
         //roomCodeButton.onClick.AddListener(CopyCodeToClipboard);
         //startGameButton.onClick.AddListener(StartGame); 
+        LockInButton.onClick.AddListener(StartGame);
     }
 
     private void Start()
@@ -87,7 +93,8 @@ public class ChooseCharacterUI : MonoBehaviour
                 LobbyManager.Instance.UpdatePlayerCharacter(button.GetComponent<ChooseObjectInfo>().GetCharacterType());
                 SetCharacterObjectActive(button.GetComponent<ChooseObjectInfo>().GetCharacterType());
                 characterNameText.text = button.GetComponent<ChooseObjectInfo>().GetCharacterType().ToString();
-
+                int skinId = button.GetComponent<ChooseObjectInfo>().GetCharacterIndex();
+                NMLGameMultiplayer.Instance.ChangePlayerSkin(skinId);
                 RemoveSelectedFX();
 
                 if (!character.activeSelf)
@@ -188,6 +195,7 @@ public class ChooseCharacterUI : MonoBehaviour
     {
         //! Add functions to start the game
         //Debug.Log("Start Game!!!");
-        Loader.LoadNetwork(Loader.Scene.ChooseScene);
+        NMLGameMultiplayer.Instance.PrintDataNetworkList();
+        Loader.LoadNetwork(Loader.Scene.GameScene);
     }
 }
