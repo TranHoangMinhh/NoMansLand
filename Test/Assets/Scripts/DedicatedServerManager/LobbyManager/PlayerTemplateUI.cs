@@ -10,13 +10,25 @@ public class PlayerTemplateUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI playerNameText;
     [SerializeField] private Button kickPlayerButton;
+    [SerializeField] private Image characterImage;
+    [SerializeField] private TextMeshProUGUI characterName;
+
+    private enum OnScene
+    {
+        LobbyScene,
+        ChooseScene
+    }
+    [SerializeField] private OnScene onScene;
 
     private Player _player;
 
 
     private void Awake()
     {
-        kickPlayerButton.onClick.AddListener(KickPlayer);
+        if (onScene.ToString() == "LobbyScene")
+        {
+            kickPlayerButton.onClick.AddListener(KickPlayer);
+        }
     }
 
     public void SetKickPLayerButtonVisible(bool visible)
@@ -43,17 +55,20 @@ public class PlayerTemplateUI : MonoBehaviour
 
         //LobbyManager.Instance.UpdatePlayerSideWeapon(sideWeapon);
 
-        //LobbyManager.PlayerCharacter playerCharacter = System.Enum.Parse<LobbyManager.PlayerCharacter>(player.Data[LobbyManager.KEY_PLAYER_CHARACTER].Value);
+        if (onScene.ToString() == "ChooseScene")
+        {
+            LobbyManager.PlayerCharacter playerCharacter = System.Enum.Parse<LobbyManager.PlayerCharacter>(player.Data[LobbyManager.KEY_PLAYER_CHARACTER].Value);
 
-        //playerCharacterImage.sprite = CharacterSprites.Instance.GetCharacterSprite(playerCharacter);
+            characterImage.sprite = CharacterSprites.Instance.GetCharacterSprite(playerCharacter);
 
-        //if (playerCharacter != LobbyManager.PlayerCharacter.None)
-        //{
-        //    playerCharacterText.text = playerCharacter.ToString();
-        //}
-        //else
-        //{
-        //    playerCharacterText.text = "(Picking...)";
-        //}
+            if (playerCharacter != LobbyManager.PlayerCharacter.None)
+            {
+                characterName.text = playerCharacter.ToString();
+            }
+            else
+            {
+                characterName.text = "(Picking...)";
+            }
+        }
     }
 }

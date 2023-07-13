@@ -29,6 +29,7 @@ public class LobbyUI : MonoBehaviour
 
     private string _roomCode;
     private bool _hasListViewInstantiate = false;
+    private bool _hasSceneChange = false;
 
 
     private void Awake()
@@ -37,6 +38,7 @@ public class LobbyUI : MonoBehaviour
 
         startButton.onClick.AddListener(() => {
             Hide();
+            _hasSceneChange = true;
             Loader.LoadNetwork(Loader.Scene.ChooseScene);
         });
 
@@ -61,13 +63,19 @@ public class LobbyUI : MonoBehaviour
 
     private void LobbyManager_OnLeftLobby(object sender, EventArgs e)
     {
-        ClearList();
-        Hide();
+        if (!_hasSceneChange)
+        {
+            ClearList();
+            Hide();
+        }
     }
 
     private void UpdateLobby_Event(object sender, LobbyManager.LobbyEventArgs e)
     {
-        UpdatePlayerList(e.lobby);
+        if (!_hasSceneChange)
+        {
+            UpdatePlayerList(e.lobby);
+        }
     }
 
     private void Show()

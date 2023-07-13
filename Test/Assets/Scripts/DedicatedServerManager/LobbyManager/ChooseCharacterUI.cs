@@ -19,21 +19,16 @@ public class ChooseCharacterUI : MonoBehaviour
     [SerializeField] private Transform characterShowcase;
     [SerializeField] private TextMeshProUGUI characterNameText;
 
-    //[Header("Room Code")]
-    //[SerializeField] private Button roomCodeButton;
-    //[SerializeField] private TextMeshProUGUI roomCodeText;
-
     [Header("Buttons")]
     [SerializeField] private List<Button> changeCharacterButtonList;
-    [SerializeField] private Button leaveRoomButton;
     [SerializeField] private Button LockInButton;
-    //[SerializeField] private Button leaveRoomButton;
-    //[SerializeField] private Button startGameButton;
+
+    [Header("Navigation")]
+    [SerializeField] private GameObject chooseSideWeaponScene;
 
     private Dictionary<int, Transform> characterSkinsDictionary;
 
-    private string _roomCode;
-    private List<Transform> _characterList;
+    //private List<Transform> _characterList;
 
 
     private void Awake()
@@ -43,26 +38,16 @@ public class ChooseCharacterUI : MonoBehaviour
         playerTemplateUI.gameObject.SetActive(false);
 
         LoadButtonList();
-        characterSkinsDictionary = new Dictionary<int, Transform>();
 
-        //roomCodeButton.onClick.AddListener(CopyCodeToClipboard);
-        //startGameButton.onClick.AddListener(StartGame); 
-        LockInButton.onClick.AddListener(StartGame);
-        leaveRoomButton.onClick.AddListener(() =>
-        {
-            LobbyManager.Instance.LeaveLobby();
-            NetworkManager.Singleton.Shutdown();
-            LoadingManager.Instance.LoadScene(LoadingManager.Scenes.LobbyScene);
-        });
+        LockInButton.onClick.AddListener(OpenChooseSideWeaponScene);
     }
 
     private void Start()
     {
-        //LobbyManager.Instance.OnJoinedLobby += UpdateLobby_Event;
-        //LobbyManager.Instance.OnJoinedLobbyUpdate += UpdateLobby_Event;
-        //LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
-        //LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
+        LobbyManager.Instance.OnJoinedLobby += UpdateLobby_Event;
+        LobbyManager.Instance.OnJoinedLobbyUpdate += UpdateLobby_Event;
 
+        characterSkinsDictionary = new Dictionary<int, Transform>();
         character.SetActive(false);
 
         //Hide();
@@ -70,12 +55,7 @@ public class ChooseCharacterUI : MonoBehaviour
 
     private void UpdateLobby_Event(object sender, LobbyManager.LobbyEventArgs e)
     {
-        UpdateRoom();
-    }
-
-    private void LobbyManager_OnLeftLobby(object sender, System.EventArgs e)
-    {
-        Debug.Log("Leave Room");
+        UpdateRoom(e.lobby);
     }
 
     private void Hide()
@@ -138,9 +118,9 @@ public class ChooseCharacterUI : MonoBehaviour
     {
         foreach (Button button in changeCharacterButtonList)
         {
-            if (button.GetComponent<ButtonBehavior>().HasChooseCharacter())
+            if (button.GetComponent<ButtonBehavior>().HasButtonClicked())
             {
-                button.GetComponent<ButtonBehavior>().RemoveChooseCharacter();
+                button.GetComponent<ButtonBehavior>().RemoveClickedFX();
             }
         }
     }
@@ -154,10 +134,10 @@ public class ChooseCharacterUI : MonoBehaviour
         }
     }
 
-    private void UpdateRoom()
-    {
-        UpdateRoom(LobbyManager.Instance.GetJoinedLobby());
-    }
+    //private void UpdateRoom()
+    //{
+    //    UpdateRoom(LobbyManager.Instance.GetJoinedLobby());
+    //}
 
     private void UpdateRoom(Lobby lobby)
     {
@@ -173,36 +153,16 @@ public class ChooseCharacterUI : MonoBehaviour
             // Check if this is their own player, i.e. player screen which can be interactable
             bool isPlayer = player.Id == LobbyManager.Instance.GetPlayerID();
 
-            // Set visibility to kick player button. Kick player button only visible to host
-            newPlayerTemplate.SetKickPLayerButtonVisible(
-                LobbyManager.Instance.IsLobbyHost() &&
-                !isPlayer  // Not allow player to kick itself
-            );
-
             // Update player UI
             newPlayerTemplate.UpdatePlayer(player);
         }
 
-        _roomCode = lobby.LobbyCode;
-
-        //roomNameText.text = lobby.Name;
-        //roomCodeText.text = $"Code: {lobby.LobbyCode}";
-        //playerCountText.text = $"{lobby.Players.Count}/{lobby.MaxPlayers} Players";
-
-        Show();
+        //Show();
     }
 
-    private void CopyCodeToClipboard()
+    private void OpenChooseSideWeaponScene()
     {
-        GUIUtility.systemCopyBuffer = _roomCode;
-    }
-
-    private void StartGame()
-    {
-        //! Add functions to start the game
-        //Debug.Log("Start Game!!!");
-        NMLGameMultiplayer.Instance.PrintDataNetworkList();
-        //Loader.LoadNetwork(Loader.Scene.GameScene);
-        LoadingManager.Instance.LoadSceneNetwork(LoadingManager.Scenes.GameScene);
+        Hide();
+        chooseSideWeaponScene.SetActive(true);
     }
 }

@@ -18,7 +18,7 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         None,
         MainMenuButton,
-        ChooseCharacterButton
+        ChooseLoadoutButton
     }
     [SerializeField] private ButtonType buttonType;
     
@@ -54,9 +54,9 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             _hoverPosition = new Vector3(_defaultPosition.x + _increasedPositionTo, _defaultPosition.y, _defaultPosition.z);
         }
 
-        if (buttonType.ToString() == "ChooseCharacterButton")
+        if (buttonType.ToString() == "ChooseLoadoutButton")
         {
-            GetComponent<Button>().onClick.AddListener(ChooseCharacter);
+            GetComponent<Button>().onClick.AddListener(ChooseLoadoutClicked);
         }
 
         // Reset effect on start
@@ -111,17 +111,17 @@ public class ButtonBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
     }
 
-    private void ChooseCharacter()
+    private void ChooseLoadoutClicked()
     {
         selectedFX.SetActive(true);
     }
 
-    public void RemoveChooseCharacter()
+    public void RemoveClickedFX()
     {
         selectedFX.SetActive(false);
     }
 
-    public bool HasChooseCharacter()
+    public bool HasButtonClicked()
     {
         return selectedFX.activeSelf;
     }
