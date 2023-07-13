@@ -19,11 +19,17 @@ public class ChooseSideWeaponUI : MonoBehaviour
     [SerializeField] private List<Button> sideWeaponButtonList;
     [SerializeField] private Button lockInButton;
 
+    [Space(5)]
+    [SerializeField] private GameObject loadingScene;
+
 
     private void Awake()
     {
         LoadButtonList();
-        lockInButton.onClick.AddListener(StartGame);
+        lockInButton.onClick.AddListener(() => {
+            loadingScene.SetActive(true);
+            StartGame();
+        });
     }
 
     private void Start()
@@ -88,8 +94,6 @@ public class ChooseSideWeaponUI : MonoBehaviour
 
     private void StartGame()
     {
-        //! Add functions to start the game
-        //Debug.Log("Start Game!!!");
         NMLGameMultiplayer.Instance.PrintDataNetworkList();
         //Loader.LoadNetwork(Loader.Scene.GameScene);
         LoadingManager.Instance.LoadSceneNetwork(LoadingManager.Scenes.GameScene);

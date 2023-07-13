@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -338,6 +338,7 @@ MonoBehaviour:
   buttonHoverFX: {fileID: 1668295016}
   buttonText: {fileID: 640561861}
   isQuitButton: 0
+  selectedFX: {fileID: 0}
   buttonType: 1
 --- !u!1 &33592545
 GameObject:
@@ -2950,6 +2951,7 @@ MonoBehaviour:
   buttonHoverFX: {fileID: 217941096}
   buttonText: {fileID: 81019024}
   isQuitButton: 0
+  selectedFX: {fileID: 0}
   buttonType: 1
 --- !u!1 &996374250
 GameObject:
@@ -3993,8 +3995,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hoang
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8c74be11691592f478e1b72ca0b09f1f, type: 2}
-  m_sharedMaterial: {fileID: -1282748166963156915, guid: 8c74be11691592f478e1b72ca0b09f1f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bd8edf1a682df2645bbe2511002eec59, type: 2}
+  m_sharedMaterial: {fileID: 3711604656068964602, guid: bd8edf1a682df2645bbe2511002eec59, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4018,8 +4020,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38
-  m_fontSizeBase: 38
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4207,6 +4209,7 @@ MonoBehaviour:
   buttonHoverFX: {fileID: 1043637308}
   buttonText: {fileID: 409891632}
   isQuitButton: 0
+  selectedFX: {fileID: 0}
   buttonType: 1
 --- !u!1 &1268061097
 GameObject:
@@ -5257,6 +5260,7 @@ MonoBehaviour:
   buttonHoverFX: {fileID: 41823538}
   buttonText: {fileID: 892546697}
   isQuitButton: 0
+  selectedFX: {fileID: 0}
   buttonType: 1
 --- !u!1 &2069556972
 GameObject:
@@ -5742,6 +5746,7 @@ MonoBehaviour:
   buttonHoverFX: {fileID: 2072639227}
   buttonText: {fileID: 188789406}
   isQuitButton: 0
+  selectedFX: {fileID: 0}
   buttonType: 1
 --- !u!1 &2130690090
 GameObject:
@@ -5906,6 +5911,7 @@ MonoBehaviour:
   buttonHoverFX: {fileID: 1777412561}
   buttonText: {fileID: 921972138}
   isQuitButton: 1
+  selectedFX: {fileID: 0}
   buttonType: 1
 --- !u!1 &2144538676
 GameObject:
@@ -6046,4 +6052,5 @@ MonoBehaviour:
   buttonHoverFX: {fileID: 1107099165}
   buttonText: {fileID: 1879684522}
   isQuitButton: 1
+  selectedFX: {fileID: 0}
   buttonType: 1

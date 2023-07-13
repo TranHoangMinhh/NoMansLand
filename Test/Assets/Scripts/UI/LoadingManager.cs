@@ -29,7 +29,7 @@ public class LoadingManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -62,17 +62,8 @@ public class LoadingManager : MonoBehaviour
 
     public void LoadSceneNetwork(Scenes scene)
     {
-        if (needCanvas)
-        {
-            loadingCanvas.SetActive(true);
-            Debug.Log("Activate Loading Scene");
-        }
-
         LobbyManager.Instance.DisableOnEnterGame();
         NetworkManager.Singleton.SceneManager.LoadScene(scene.ToString(), LoadSceneMode.Single);
-
-        if (needCanvas)
-            loadingCanvas.SetActive(false);
     }
 
 }

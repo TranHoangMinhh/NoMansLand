@@ -39,7 +39,8 @@ public class LobbyUI : MonoBehaviour
         startButton.onClick.AddListener(() => {
             Hide();
             _hasSceneChange = true;
-            Loader.LoadNetwork(Loader.Scene.ChooseScene);
+            //Loader.LoadNetwork(Loader.Scene.ChooseScene);
+            LoadingManager.Instance.LoadSceneNetwork(LoadingManager.Scenes.ChooseScene);
         });
 
         leaveRoomButton.onClick.AddListener(() => {
