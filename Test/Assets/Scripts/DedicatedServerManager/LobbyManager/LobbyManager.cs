@@ -21,6 +21,9 @@ public class LobbyManager : MonoBehaviour
     public const string KEY_MAP_WEATHER = "Map_Weather";
 
     // Event publishers for each action on lobby
+    public event EventHandler OnEnterGame;
+    public event EventHandler OnLeaveGame;
+
     public event EventHandler OnLeftLobby;
 
     public event EventHandler<LobbyEventArgs> OnJoinedLobby;
@@ -215,6 +218,26 @@ public class LobbyManager : MonoBehaviour
         return false;
     }
 
+    public void DisableOnEnterGame()
+    {
+        gameObject.SetActive(false);
+        OnEnterGame?.Invoke(this, EventArgs.Empty);
+
+#if UNITY_EDITOR
+        Debug.Log("Enter Game - Disable Lobby Manager!!!");
+#endif
+    }
+
+    public void EnableOnExitGame()
+    {
+        gameObject.SetActive(true);
+        OnLeaveGame?.Invoke(this, EventArgs.Empty);
+
+#if UNITY_EDITOR
+        Debug.Log("Leave Game - Enable Lobby Manager!!!");
+#endif
+    }
+
     public async void CreateLobby(string roomName, int maxPlayer, bool isPrivate, string duration, string map = null, string map_weather = null)
     {
         Player player = GetPlayer();
@@ -306,7 +329,7 @@ public class LobbyManager : MonoBehaviour
             Player = player
         });
 
-        OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
+        OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = _joinedLobby });
 
 #if UNITY_EDITOR
         PrintPlayers(_joinedLobby);

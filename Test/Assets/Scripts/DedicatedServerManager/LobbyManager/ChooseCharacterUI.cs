@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +25,7 @@ public class ChooseCharacterUI : MonoBehaviour
 
     [Header("Buttons")]
     [SerializeField] private List<Button> changeCharacterButtonList;
-
+    [SerializeField] private Button leaveRoomButton;
     [SerializeField] private Button LockInButton;
     //[SerializeField] private Button leaveRoomButton;
     //[SerializeField] private Button startGameButton;
@@ -47,14 +48,20 @@ public class ChooseCharacterUI : MonoBehaviour
         //roomCodeButton.onClick.AddListener(CopyCodeToClipboard);
         //startGameButton.onClick.AddListener(StartGame); 
         LockInButton.onClick.AddListener(StartGame);
+        leaveRoomButton.onClick.AddListener(() =>
+        {
+            LobbyManager.Instance.LeaveLobby();
+            NetworkManager.Singleton.Shutdown();
+            LoadingManager.Instance.LoadScene(LoadingManager.Scenes.LobbyScene);
+        });
     }
 
     private void Start()
     {
-        LobbyManager.Instance.OnJoinedLobby += UpdateLobby_Event;
-        LobbyManager.Instance.OnJoinedLobbyUpdate += UpdateLobby_Event;
-        LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
-        LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
+        //LobbyManager.Instance.OnJoinedLobby += UpdateLobby_Event;
+        //LobbyManager.Instance.OnJoinedLobbyUpdate += UpdateLobby_Event;
+        //LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
+        //LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
 
         character.SetActive(false);
 
@@ -68,8 +75,7 @@ public class ChooseCharacterUI : MonoBehaviour
 
     private void LobbyManager_OnLeftLobby(object sender, System.EventArgs e)
     {
-        ClearRoom();
-        Hide();
+        Debug.Log("Leave Room");
     }
 
     private void Hide()
@@ -93,7 +99,7 @@ public class ChooseCharacterUI : MonoBehaviour
                 LobbyManager.Instance.UpdatePlayerCharacter(button.GetComponent<ChooseObjectInfo>().GetCharacterType());
                 SetCharacterObjectActive(button.GetComponent<ChooseObjectInfo>().GetCharacterType());
                 characterNameText.text = button.GetComponent<ChooseObjectInfo>().GetCharacterType().ToString();
-                int skinId = button.GetComponent<ChooseObjectInfo>().GetCharacterIndex();
+                int skinId = button.GetComponent<ChooseObjectInfo>().GetIndex();
                 NMLGameMultiplayer.Instance.ChangePlayerSkin(skinId);
                 RemoveSelectedFX();
 
@@ -141,15 +147,10 @@ public class ChooseCharacterUI : MonoBehaviour
 
     private void ClearRoom()
     {
-        Debug.Log("Clear Room");
         foreach (Transform child in playerListContainer)
         {
-            if (child != null)
-            {
-                if (child == playerTemplateUI) continue;
-                Destroy(child.gameObject);
-                Debug.Log("Destroy child");
-            }
+            if (child == playerTemplateUI) continue;
+            Destroy(child.gameObject);
         }
     }
 
@@ -161,7 +162,6 @@ public class ChooseCharacterUI : MonoBehaviour
     private void UpdateRoom(Lobby lobby)
     {
         ClearRoom();
-        Debug.Log("Room Cleared");
 
         foreach (Player player in lobby.Players)
         {
@@ -202,6 +202,7 @@ public class ChooseCharacterUI : MonoBehaviour
         //! Add functions to start the game
         //Debug.Log("Start Game!!!");
         NMLGameMultiplayer.Instance.PrintDataNetworkList();
-        Loader.LoadNetwork(Loader.Scene.GameScene);
+        //Loader.LoadNetwork(Loader.Scene.GameScene);
+        LoadingManager.Instance.LoadSceneNetwork(LoadingManager.Scenes.GameScene);
     }
 }

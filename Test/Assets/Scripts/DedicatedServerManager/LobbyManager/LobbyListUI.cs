@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
@@ -17,11 +18,13 @@ public class LobbyListUI : MonoBehaviour
     [Header("Lobby List")]
     [SerializeField] private Transform lobbyTemplate;
     [SerializeField] private Transform lobbyListContainer;
+    [SerializeField] private Transform testObj;
     [SerializeField] private Button refreshButton;
     [SerializeField] private Button backButton;
 
     [Space(10)]
     [Header("Join/Create Room")]
+    [SerializeField] private GameObject roomUI;
     [SerializeField] private GameObject createRoomUI;
     [SerializeField] private Button createRoomButton;
 
@@ -31,16 +34,19 @@ public class LobbyListUI : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
 
         lobbyTemplate.gameObject.SetActive(false);
         refreshButton.onClick.AddListener(RefreshButtonClick);
         createRoomButton.onClick.AddListener(CreateLobbyButtonClick);  //! Reserved for new UI
 
-        joinRoomButton.onClick.AddListener(() =>
-        {
-            LobbyManager.Instance.JoinLobbyByCode(inputRoomCodeText.text);
-        });
+        //joinRoomButton.onClick.AddListener(() =>
+        //{
+        //    LobbyManager.Instance.JoinLobbyByCode(inputRoomCodeText.text);
+        //});
 
         backButton.onClick.AddListener(LoadMainMenuScene);
     }
@@ -54,6 +60,8 @@ public class LobbyListUI : MonoBehaviour
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnKickedFromLobby;
 
         sceneTitle.text = "lobby";
+
+        UpdateLobbyList(new List<Lobby>());
     }
 
     private void Hide()
@@ -64,7 +72,7 @@ public class LobbyListUI : MonoBehaviour
     private void Show()
     {
         gameObject.SetActive(true);
-        LobbyManager.Instance.RefreshLobbyList();
+        //LobbyManager.Instance.RefreshLobbyList();
     }
 
     private void LobbyManager_OnLobbyListChanged(object sender, LobbyManager.OnLobbyListChangedEventArgs e)
@@ -74,21 +82,21 @@ public class LobbyListUI : MonoBehaviour
 
     private void LobbyManager_OnJoinedLobby(object sender, LobbyManager.LobbyEventArgs e)
     {
+        roomUI.SetActive(true);
         Hide();
-        //roomUI.SetActive(true);
-        LoadingManager.Instance.LoadScene(LoadingManager.Scenes.ChooseScene);
+        //LoadingManager.Instance.LoadScene(LoadingManager.Scenes.ChooseScene);
     }
 
     private void LobbyManager_OnLeftLobby(object sender, EventArgs e)
     {
+
         Show();
-        //roomUI.SetActive(false);
     }
 
     private void LobbyManager_OnKickedFromLobby(object sender, LobbyManager.LobbyEventArgs e)
     {
+
         Show();
-        //roomUI.SetActive(false);
     }
 
     //! Reserved for new UI
@@ -115,6 +123,7 @@ public class LobbyListUI : MonoBehaviour
 
     private void UpdateLobbyList(List<Lobby> lobbyList)
     {
+        Debug.Log(testObj);
         // Search through all lobby and destroy game object for new lobby add later on
         foreach (Transform child in lobbyListContainer)
         {

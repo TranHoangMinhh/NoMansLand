@@ -6,9 +6,11 @@ public class ChooseObjectInfo : MonoBehaviour
 {
 
     [SerializeField] private LobbyManager.PlayerCharacter characterType;
-    [SerializeField] private int characterIndex;
+    [SerializeField] private LobbyManager.SideWeapon sideWeapon;
+    [SerializeField] private int index;
 
     public LobbyManager.PlayerCharacter GetCharacterType() { return characterType; }
-    public int GetCharacterIndex() { return characterIndex; }
+    public LobbyManager.SideWeapon GetSideWeapon() { return sideWeapon; }
+    public int GetIndex() { return index; }
 
 }

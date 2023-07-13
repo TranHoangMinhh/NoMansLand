@@ -20,6 +20,7 @@ public class LobbyTemplateUI : MonoBehaviour
         {
             LobbyManager.Instance.JoinLobbyByID(_lobby);
             NMLGameMultiplayer.Instance.StartClient();
+            //LoadingManager.Instance.LoadScene(LoadingManager.Scenes.ChooseScene);
         });
     }
 
