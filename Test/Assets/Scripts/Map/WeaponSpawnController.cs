@@ -1,13 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class WeaponSpawnController : MonoBehaviour
+public class WeaponSpawnController : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private WeaponsSpawn weaponsSpawn;
+
+    private void Start()
     {
-        GetComponent<WeaponsSpawn>().InstantiateLoot(transform.position);
+        InitializePool();
+
+        if (IsServer)
+        {
+            weaponsSpawn.InstantiateLootServerRpc(transform.position);
+        }
+        else
+        {
+            weaponsSpawn.InstantiateLootClientRpc();
+        }
     }
 
+    private void InitializePool()
+    {
+        weaponsSpawn = GetComponent<WeaponsSpawn>();
+        weaponsSpawn.InitializePool();
+    }
 }
