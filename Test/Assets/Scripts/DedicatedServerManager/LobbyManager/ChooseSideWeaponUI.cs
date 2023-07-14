@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
@@ -27,15 +28,25 @@ public class ChooseSideWeaponUI : MonoBehaviour
     {
         LoadButtonList();
         lockInButton.onClick.AddListener(() => {
-            loadingScene.SetActive(true);
-            StartGame();
+            if (LobbyManager.Instance.IsLobbyHost())
+            {
+                //loadingScene.SetActive(true);
+                StartGame();
+            }
         });
     }
 
     private void Start()
     {
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+
         playerVisual.SetActive(false);
         weaponVisual.SetActive(false);
+    }
+
+    private void OnActiveSceneChanged(Scene current, Scene next)
+    {
+        loadingScene.SetActive(true);
     }
 
     private void LoadButtonList()

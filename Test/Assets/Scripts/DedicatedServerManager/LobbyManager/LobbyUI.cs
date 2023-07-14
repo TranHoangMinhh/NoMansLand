@@ -3,6 +3,7 @@ using TMPro;
 using Unity.Netcode;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LobbyUI : MonoBehaviour
@@ -38,7 +39,7 @@ public class LobbyUI : MonoBehaviour
 
         startButton.onClick.AddListener(() => {
             Hide();
-            _hasSceneChange = true;
+            //_hasSceneChange = true;
             //Loader.LoadNetwork(Loader.Scene.ChooseScene);
             LoadingManager.Instance.LoadSceneNetwork(LoadingManager.Scenes.ChooseScene);
         });
@@ -59,7 +60,14 @@ public class LobbyUI : MonoBehaviour
         LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
 
+        SceneManager.activeSceneChanged += OnChangedActiveScene;
+
         Hide();
+    }
+
+    private void OnChangedActiveScene(Scene current, Scene next)
+    {
+        _hasSceneChange = true;
     }
 
     private void LobbyManager_OnLeftLobby(object sender, EventArgs e)
