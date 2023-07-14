@@ -4434,7 +4434,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 513
   _cinemachineVirtualCamera: {fileID: 3391575218925993584}
-  listener: {fileID: 0}
+  listener: {fileID: 8952981056769398202}
   CinemachineCameraTarget: {fileID: 8154091089501619112}
   TopClamp: 70
   BottomClamp: -30
