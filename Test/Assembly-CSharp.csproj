@@ -94,7 +94,6 @@
     <Compile Include="Assets\POLYGON - FPS free\scripts\bunny_receive_dmg.cs" />
     <Compile Include="Assets\Scripts\UI\TimerController.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\WebRequests.cs" />
-    <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\LobbyUI.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\dservermanual.cs" />
     <Compile Include="Assets\Scripts\UI\CameraReplaceShader.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInteractUI.cs" />
@@ -166,6 +165,7 @@
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\AuthenticateUI.cs" />
     <Compile Include="Assets\Easy FPS\Scripts\TestPlayer\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\ChooseCharacterUI.cs" />
+    <Compile Include="Assets\Scripts\DedicatedServerManager\LobbyManager\LobbyUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

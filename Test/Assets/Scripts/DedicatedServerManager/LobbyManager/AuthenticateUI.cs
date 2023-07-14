@@ -17,18 +17,16 @@ public class AuthenticateUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (playerNameInput.GetComponentInChildren<TMP_InputField>().text != "") {
-                _playerName = playerNameInput.GetComponentInChildren<TMP_InputField>().text;
-                LobbyManager.Instance.Authenticate(_playerName);
-
-                //Hide();
-                playerNameInput.gameObject.SetActive(false);
-                loadingIcon.gameObject.SetActive(true);
-                indicatorText.text = "Authenticating Player";
-
-                // PlayerProfile.Instance.SetPlayerName(_playerName);
-                LoadingManager.Instance.LoadScene(LoadingManager.Scenes.MainMenuScene);
-            }
+            _playerName = playerNameInput.GetComponentInChildren<TMP_InputField>().text;
+            LobbyManager.Instance.Authenticate(_playerName);
+            
+            //Hide();
+            playerNameInput.gameObject.SetActive(false);
+            loadingIcon.gameObject.SetActive(true);
+            indicatorText.text = "Authenticating Player";
+            
+            // PlayerProfile.Instance.SetPlayerName(_playerName);
+            LoadingManager.Instance.LoadScene(LoadingManager.Scenes.MainMenuScene);
         }
     }
 

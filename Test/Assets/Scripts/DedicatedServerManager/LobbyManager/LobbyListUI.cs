@@ -41,16 +41,12 @@ public class LobbyListUI : MonoBehaviour
 
         lobbyTemplate.gameObject.SetActive(false);
         refreshButton.onClick.AddListener(RefreshButtonClick);
-        createRoomButton.onClick.AddListener(CreateLobbyButtonClick);
+        createRoomButton.onClick.AddListener(CreateLobbyButtonClick);  //! Reserved for new UI
 
-        joinRoomButton.onClick.AddListener(() =>
-        {
-            if (inputRoomCodeText.text != "")
-            {
-                LobbyManager.Instance.JoinLobbyByCode(inputRoomCodeText.text);
-                NMLGameMultiplayer.Instance.StartClient();
-            }
-        });
+        //joinRoomButton.onClick.AddListener(() =>
+        //{
+        //    LobbyManager.Instance.JoinLobbyByCode(inputRoomCodeText.text);
+        //});
 
         backButton.onClick.AddListener(LoadMainMenuScene);
     }
