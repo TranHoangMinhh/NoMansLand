@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using TMPro;
 using Unity.Netcode;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LobbyUI : MonoBehaviour
@@ -31,14 +33,18 @@ public class LobbyUI : MonoBehaviour
     private bool _hasListViewInstantiate = false;
     private bool _hasSceneChange = false;
 
+    public delegate void Change();
+    public static event Change TimeChanged;
+
 
     private void Awake()
     {
+
         playerTemplate.gameObject.SetActive(false);
 
         startButton.onClick.AddListener(() => {
             Hide();
-            _hasSceneChange = true;
+            //_hasSceneChange = true;
             //Loader.LoadNetwork(Loader.Scene.ChooseScene);
             LoadingManager.Instance.LoadSceneNetwork(LoadingManager.Scenes.ChooseScene);
         });
@@ -59,7 +65,15 @@ public class LobbyUI : MonoBehaviour
         LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
 
+        SceneManager.activeSceneChanged += OnChangedActiveScene;
+
         Hide();
+    }
+
+    private void OnChangedActiveScene(Scene current, Scene next)
+    {
+        Debug.Log("Scene change - trigger function");
+        _hasSceneChange = true;
     }
 
     private void LobbyManager_OnLeftLobby(object sender, EventArgs e)

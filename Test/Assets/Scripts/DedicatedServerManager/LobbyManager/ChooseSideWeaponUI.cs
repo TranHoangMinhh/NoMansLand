@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
@@ -26,16 +27,33 @@ public class ChooseSideWeaponUI : MonoBehaviour
     private void Awake()
     {
         LoadButtonList();
-        lockInButton.onClick.AddListener(() => {
-            loadingScene.SetActive(true);
-            StartGame();
-        });
+
+        if (!LobbyManager.Instance.IsLobbyHost())
+        {
+            lockInButton.interactable = false;
+        }
+        else
+        {
+            lockInButton.onClick.AddListener(() => {
+                //loadingScene.SetActive(true);
+                NMLGameMultiplayer.Instance.PrintDataNetworkList();
+                //Loader.LoadNetwork(Loader.Scene.GameScene);
+                LoadingManager.Instance.LoadSceneNetwork(LoadingManager.Scenes.GameScene);
+            });
+        }
     }
 
     private void Start()
     {
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+
         playerVisual.SetActive(false);
         weaponVisual.SetActive(false);
+    }
+
+    private void OnActiveSceneChanged(Scene current, Scene next)
+    {
+        loadingScene.SetActive(true);
     }
 
     private void LoadButtonList()
@@ -90,13 +108,6 @@ public class ChooseSideWeaponUI : MonoBehaviour
         {
             child.gameObject.SetActive(false);
         }
-    }
-
-    private void StartGame()
-    {
-        NMLGameMultiplayer.Instance.PrintDataNetworkList();
-        //Loader.LoadNetwork(Loader.Scene.GameScene);
-        LoadingManager.Instance.LoadSceneNetwork(LoadingManager.Scenes.GameScene);
     }
 
 }
