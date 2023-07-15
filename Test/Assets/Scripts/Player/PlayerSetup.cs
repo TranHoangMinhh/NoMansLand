@@ -7,7 +7,6 @@ public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField] private Transform characterSkins;
     private List<Transform> characterSkinsList;
-    PlayerData playerData; 
 
     private void Awake()
     {
@@ -18,22 +17,23 @@ public class PlayerSetup : NetworkBehaviour
                 characterSkinsList.Add(child);
             Debug.Log($"Number of objects: {characterSkinsList.Count}");
         }
-        playerData = NMLGameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
 
     }
 
     private void Start()
     {
-        SetPlayer(playerData.skinId);
+        SetPlayer(NMLGameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId).skinId);
     }
+
+    //NMLGameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId).diedNumber
 
     private void SetPlayer(int skinId)
     {
-        Debug.Log($"Client ID - {OwnerClientId} - Skin ID: {skinId}");
+        Debug.Log($"Client ID - {OwnerClientId} - Skin ID: {NMLGameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId).skinId}");
         if(skinId != -1)
         {
             DisableAllCharacterObject();
-            characterSkinsList[skinId].gameObject.SetActive(true);
+            characterSkinsList[NMLGameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId).skinId].gameObject.SetActive(true);
         }
     }
 

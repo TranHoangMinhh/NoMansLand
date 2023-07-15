@@ -43,7 +43,7 @@ public class CharacterSelectReady : NetworkBehaviour
 
         Debug.Log("SetPlayerReadyServerRpc " + serverRpcParams.Receive.SenderClientId);
         playerReadyDictionary[serverRpcParams.Receive.SenderClientId] = true;
-
+        int numberOfPlayers = LobbyManager.Instance.GetPlayerNumberFromLobby();
         bool allClientsLockIn = true;
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds) {
             if (!playerReadyDictionary.ContainsKey(clientId) || !playerReadyDictionary[clientId]) {
@@ -53,7 +53,7 @@ public class CharacterSelectReady : NetworkBehaviour
             }
         }
 
-        if (allClientsLockIn) {
+        if (allClientsLockIn && playerReadyDictionary.Count == numberOfPlayers) {
             //LobbyManager.Instance.DeleteLobby();
             Loader.LoadNetwork(Loader.Scene.GameScene);
         }

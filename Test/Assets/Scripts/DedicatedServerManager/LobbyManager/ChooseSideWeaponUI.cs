@@ -30,9 +30,10 @@ public class ChooseSideWeaponUI : MonoBehaviour
         lockInButton.onClick.AddListener(() => {
             if (LobbyManager.Instance.IsLobbyHost())
             {
-                //loadingScene.SetActive(true);
+                //NMLGameMultiplayer.Instance.SetPlayerReady();
+                CharacterSelectReady.Instance.SetPlayerReady();
                 StartGame();
-            }
+            }   
         });
     }
 
@@ -58,8 +59,7 @@ public class ChooseSideWeaponUI : MonoBehaviour
                 LobbyManager.Instance.UpdatePlayerSideWeapon(button.GetComponent<ChooseObjectInfo>().GetSideWeapon());
                 SetCharacterObjectActive(button.GetComponent<ChooseObjectInfo>().GetSideWeapon());
                 sideWeaponName.text = button.GetComponent<ChooseObjectInfo>().GetSideWeapon().ToString();
-                //int skinId = button.GetComponent<ChooseObjectInfo>().GetIndex();
-                //NMLGameMultiplayer.Instance.ChangePlayerSkin(skinId);
+                NMLGameMultiplayer.Instance.ChangePlayerSideWeapon(button.GetComponent<ChooseObjectInfo>().GetIndex());
                 RemoveSelectedFX();
 
                 if (!weaponVisual.activeSelf)

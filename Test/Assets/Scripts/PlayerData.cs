@@ -9,24 +9,39 @@ public struct PlayerData : IEquatable<PlayerData>, INetworkSerializable {
 
 
     public ulong clientId;
-    public int skinId;
     public FixedString64Bytes playerName;
     public FixedString64Bytes playerId;
+
+
+    //In game
+    public int skinId;
+    public int sideWeaponId;
+    public int killNumber;
+    public int diedNumber;
+    
 
 
     public bool Equals(PlayerData other) {
         return 
             clientId == other.clientId &&
             playerId == other.playerId &&
+            playerName == other.playerName &&
             skinId == other.skinId &&
-            playerName == other.playerName;
+            sideWeaponId == other.sideWeaponId &&
+            killNumber == other.killNumber &&
+            diedNumber == other.diedNumber;
     }
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter {
         serializer.SerializeValue(ref clientId);
-        serializer.SerializeValue(ref skinId);
         serializer.SerializeValue(ref playerName);
         serializer.SerializeValue(ref playerId);
+
+        serializer.SerializeValue(ref skinId);
+        serializer.SerializeValue(ref sideWeaponId);
+        serializer.SerializeValue(ref killNumber);
+        serializer.SerializeValue(ref diedNumber);
+
     }
 
 }

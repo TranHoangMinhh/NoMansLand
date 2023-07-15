@@ -526,6 +526,18 @@ namespace StarterAssets
                 anim.SetBool("isDeath", true);
             }
         }
+
+        private void Revive()
+        {
+            //New transform
+            //...
+            //...
+
+            if (isDeath == true)
+            {
+                anim.SetBool("isDeath", false);
+            }
+        }
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<BulletProjectile>() != null)

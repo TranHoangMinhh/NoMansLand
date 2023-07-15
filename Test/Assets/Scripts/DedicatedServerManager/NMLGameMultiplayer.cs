@@ -4,6 +4,7 @@ using Unity.Services.Authentication;
 using UnityEngine.SceneManagement;
 
 using System;
+using System.Collections.Generic;
 
 public class NMLGameMultiplayer : NetworkBehaviour
 {
@@ -56,6 +57,29 @@ public class NMLGameMultiplayer : NetworkBehaviour
     public void ChangePlayerSkin(int skinId) {
         ChangePlayerSkinServerRpc(skinId);
     }
+    public void ChangePlayerSideWeapon(int sideWeaponId) {
+        ChangePlayerSideWeaponServerRpc(sideWeaponId);
+    }
+
+    public void PlayerKill() {
+        SetPlayerKillServerRpc();
+    }
+    public void PlayerDie() {
+        SetPlayerDieServerRpc();
+    }
+
+    public List<PlayerData> SortPlayerDataNetworkListByKill()
+    {
+        List<PlayerData> playerDataList = new List<PlayerData>();
+        foreach(PlayerData playerData in playerDataNetworkList)
+        {
+                playerDataList.Add(playerData);
+        }
+
+        playerDataList.Sort(delegate(PlayerData p1, PlayerData p2) { return p1.killNumber.CompareTo(p2.killNumber); });
+        return playerDataList;
+    }
+
     public PlayerData GetPlayerDataFromClientId(ulong clientId) {
         foreach (PlayerData playerData in playerDataNetworkList) {
             if (playerData.clientId == clientId) {
@@ -76,7 +100,6 @@ public class NMLGameMultiplayer : NetworkBehaviour
                 playerDataNetworkList.RemoveAt(i);
             }
         }
-
     }
 
     private void NetworkManager_OnClientConnectedCallback(ulong clientId) {
@@ -167,6 +190,54 @@ public class NMLGameMultiplayer : NetworkBehaviour
         PlayerData playerData = playerDataNetworkList[playerDataIndex];
 
         playerData.skinId = skinId;
+
+        playerDataNetworkList[playerDataIndex] = playerData;
+    }
+    
+    [ServerRpc(RequireOwnership = false)]
+    private void ChangePlayerSideWeaponServerRpc(int sideWeaponId, ServerRpcParams serverRpcParams = default) {
+        /*if (!IsSkinAvailable(skinId)) {
+            // Color not available
+            return;
+        }*/
+
+        int playerDataIndex = GetPlayerDataIndexFromClientId(serverRpcParams.Receive.SenderClientId);
+
+        PlayerData playerData = playerDataNetworkList[playerDataIndex];
+
+        playerData.sideWeaponId = sideWeaponId;
+
+        playerDataNetworkList[playerDataIndex] = playerData;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetPlayerKillServerRpc(ServerRpcParams serverRpcParams = default) {
+        /*if (!IsSkinAvailable(skinId)) {
+            // Color not available
+            return;
+        }*/
+
+        int playerDataIndex = GetPlayerDataIndexFromClientId(serverRpcParams.Receive.SenderClientId);
+
+        PlayerData playerData = playerDataNetworkList[playerDataIndex];
+
+        playerData.killNumber += 1;
+
+        playerDataNetworkList[playerDataIndex] = playerData;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetPlayerDieServerRpc( ServerRpcParams serverRpcParams = default) {
+        /*if (!IsSkinAvailable(skinId)) {
+            // Color not available
+            return;
+        }*/
+
+        int playerDataIndex = GetPlayerDataIndexFromClientId(serverRpcParams.Receive.SenderClientId);
+
+        PlayerData playerData = playerDataNetworkList[playerDataIndex];
+
+        playerData.diedNumber += 1;
 
         playerDataNetworkList[playerDataIndex] = playerData;
     }

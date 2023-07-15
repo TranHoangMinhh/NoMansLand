@@ -12,6 +12,7 @@ public class NMLGameManager : NetworkBehaviour
     private Dictionary<ulong, bool> playerReadyDictionary;
     private Dictionary<ulong, bool> playerPausedDictionary;
 
+    private List<Vector3> playerSpawned;
     private enum State {
         WaitingToStart,
         CountdownToStart,
@@ -24,6 +25,12 @@ public class NMLGameManager : NetworkBehaviour
 
         playerReadyDictionary = new Dictionary<ulong, bool>();
         playerPausedDictionary = new Dictionary<ulong, bool>();
+
+    }
+
+    private void Start()
+    {
+        //playerSpawned = GetPlayerSpawnList();
     }
     public override void OnNetworkSpawn() {
         state.OnValueChanged += State_OnValueChanged;
@@ -39,11 +46,28 @@ public class NMLGameManager : NetworkBehaviour
 
     private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut) {
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds) {
+            //Vector3 spawnPosition = getRandom(playerSpawned);
+            //Transform playerTransform = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
             Transform playerTransform = Instantiate(playerPrefab);
             playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
         }
     }
 
+    private Vector3 getRandom(List<Vector3> playerPositionSpawnList)
+    {
+        int index = Random.Range(0, playerPositionSpawnList.Count);
+        Vector3 pos = playerPositionSpawnList[index];
+        playerPositionSpawnList.RemoveAt(index);
+        return pos;
+    }
+
+/*
+    public Vector3 getNewRandomPos()
+    {
+        playerPositionSpawnList = GetPlayerSpawnList();
+        return getRandom(playerPositionSpawnList);
+    }
+*/
     private void NetworkManager_OnClientDisconnectCallback(ulong clientId) {
     }
 

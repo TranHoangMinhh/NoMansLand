@@ -205,6 +205,12 @@ public class LobbyManager : MonoBehaviour
         return _joinedLobby != null && _joinedLobby.HostId == _playerID;
     }
 
+    public int GetPlayerNumberFromLobby()
+    {
+        return _hostLobby.MaxPlayers;
+    }
+
+
     private bool IsPlayerInLobby()
     {
         if (_joinedLobby != null && _joinedLobby.Players != null)
