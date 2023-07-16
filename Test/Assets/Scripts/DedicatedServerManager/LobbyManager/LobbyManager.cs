@@ -118,6 +118,14 @@ public class LobbyManager : MonoBehaviour
         return _joinedLobby;
     }
 
+    public int GetDuration()
+    {
+        if (_hostLobby != null)
+            return int.Parse(_hostLobby.Data[KEY_DURATION].Value);
+        else
+            return int.Parse(_joinedLobby.Data[KEY_DURATION].Value);
+    }
+
     public async void Authenticate(string playerName)
     {
         //! Change to player's input name. Check on DB using playerID:

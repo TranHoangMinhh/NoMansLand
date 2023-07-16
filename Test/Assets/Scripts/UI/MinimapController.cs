@@ -6,5 +6,5 @@ using Unity.Netcode;
 public class MinimapController : NetworkBehaviour
 {
     public Transform targetToFollow;
-    public bool rotateWithTheTarget = true;
+    public bool rotateWithTheTarget = false;
 }

@@ -15,6 +15,7 @@ namespace StarterAssets
 		public bool aim;
 		public bool shoot;
 		public bool crouch;
+		public bool pause;
 		public bool takeDmg;
 
 		[Header("Movement Settings")]
@@ -62,14 +63,20 @@ namespace StarterAssets
 		{
 			CrouchInput(value.isPressed);
 		}
+
 		public void OnTakeDmg(InputValue value)
 		{
 			TakeDmgInput(value.isPressed);
 		}
+
+        public void OnPause(InputValue value)
+        {
+            PauseInput(value.isPressed);
+        }
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		}
@@ -109,7 +116,12 @@ namespace StarterAssets
 			takeDmg = newTakeDmgState;
 		}
 
-		private void OnApplicationFocus(bool hasFocus)
+        public void PauseInput(bool newPauseState)
+        {
+            pause = newPauseState;
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
 		}

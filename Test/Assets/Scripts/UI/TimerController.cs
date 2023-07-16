@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Net;
 
 public class TimerController : MonoBehaviour
 {
 
     [Header("Time Settings")]
     [SerializeField] private bool isCountDown;
-    [SerializeField] private float duration;
-
-    [Space(10)]
     [SerializeField] private bool hasLimit;
     [SerializeField] private float timerLimit;
 
+    private float _duration;
     private TextMeshProUGUI _timerText;
     private float _currentTime;
     private float _minutes;
@@ -22,8 +21,11 @@ public class TimerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //_duration = LobbyManager.Instance.GetDuration();
+        _duration = 15f;
+
         _timerText = GetComponent<TextMeshProUGUI>();
-        _currentTime = duration;
+        _currentTime = _duration;
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class TimerController : MonoBehaviour
     {
         _currentTime = isCountDown ? _currentTime -= Time.deltaTime : _currentTime += Time.time;
 
+        // Handle when time limit is reached
         if (hasLimit && ((isCountDown && _currentTime <= timerLimit) || (!isCountDown && _currentTime >= timerLimit)))
         {
             _currentTime = timerLimit;
@@ -49,7 +52,6 @@ public class TimerController : MonoBehaviour
         if (_seconds <= 10)
         {
             _timerText.color = Color.red;
-            _timerText.fontStyle = FontStyles.Bold;
         }
 
         _timerText.text = string.Format("{0:00} : {1:00}", _minutes, _seconds);

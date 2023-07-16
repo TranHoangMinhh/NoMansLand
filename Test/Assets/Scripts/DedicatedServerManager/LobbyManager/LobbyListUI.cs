@@ -18,7 +18,6 @@ public class LobbyListUI : MonoBehaviour
     [Header("Lobby List")]
     [SerializeField] private Transform lobbyTemplate;
     [SerializeField] private Transform lobbyListContainer;
-    [SerializeField] private Transform testObj;
     [SerializeField] private Button refreshButton;
     [SerializeField] private Button backButton;
 
@@ -65,7 +64,8 @@ public class LobbyListUI : MonoBehaviour
 
         sceneTitle.text = "lobby";
 
-        UpdateLobbyList(new List<Lobby>());
+        // UpdateLobbyList(new List<Lobby>());
+        LobbyManager.Instance.RefreshLobbyList();
     }
 
     private void Hide()
@@ -103,12 +103,6 @@ public class LobbyListUI : MonoBehaviour
         Show();
     }
 
-    //! Reserved for new UI
-    //private void CreateLobbyButtonClick()
-    //{
-    //    throw new NotImplementedException();
-    //}
-
     private void LoadMainMenuScene()
     {
         Loader.Load(Loader.Scene.MainMenuScene);
@@ -127,7 +121,6 @@ public class LobbyListUI : MonoBehaviour
 
     private void UpdateLobbyList(List<Lobby> lobbyList)
     {
-        Debug.Log(testObj);
         // Search through all lobby and destroy game object for new lobby add later on
         foreach (Transform child in lobbyListContainer)
         {

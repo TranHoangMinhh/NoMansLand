@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    [SerializeField] Healthbar _healthbar;
-
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             PlayerTakeDmg(20);
             //Debug.Log(GameManager.gameManager._playerHealth.Health);
@@ -29,13 +27,13 @@ public class PlayerBehavior : MonoBehaviour
 
     private void PlayerTakeDmg(int dmg)
     {
-        GameManager.gameManager._playerHealth.DmgUnit(dmg);
-        _healthbar.SetHealth(GameManager.gameManager._playerHealth.Health);
+        //GameManager.gameManager._playerHealth.DmgUnit(dmg);
+        Healthbar.Instance.UpdateHealthBar(20);
     }
 
     private void PlayerHeal(int heal)
     {
         GameManager.gameManager._playerHealth.HealUnit(heal);
-        _healthbar.SetHealth(GameManager.gameManager._playerHealth.Health);
+        Healthbar.Instance.UpdateHealthBar(GameManager.gameManager._playerHealth.Health);
     }
 }

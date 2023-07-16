@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-#if ENABLE_INPUT_SYSTEM 
+using UnityEditor;
+#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 using Cinemachine;
@@ -167,6 +168,7 @@ namespace StarterAssets
 
         private void Start()
         {
+            GameStateManager.Instance.OnGameStateChange += Pause;
 
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
@@ -506,6 +508,12 @@ namespace StarterAssets
                 _input.shoot = false;
             }
         }
+
+        private void Pause(object sender, GameStateManager.GameStateEventArgs newGameState)
+        {
+            enabled = newGameState.state == GameStateManager.GameState.Gameplay;
+        }
+
         private void takeDamage()
         {
             if (_input.takeDmg)
@@ -544,9 +552,11 @@ namespace StarterAssets
             {
                 SpawnBloodOnCollideWBulletServerRpc();
                 health -= 20f;
+                Healthbar.Instance.UpdateHealthBar(health);
                 if (health == 0f)
                 {
                     isDeath = true;
+                    NMLGameMultiplayer.Instance.PlayerDie();
                 }
             }
         }

@@ -6,26 +6,51 @@ using TMPro;
 
 public class Healthbar : MonoBehaviour
 {
-    private Slider _healthSlider;
-    private TextMeshProUGUI _healthText;
+    public static Healthbar Instance {  get; private set; }
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Image[] healthbarSegmentArray;
+
+    private int _maxHealth;
+    private float _amountPerSegment;
+
+
+    private void Awake()
     {
-        _healthSlider = GetComponent<Slider>();
-        _healthText = GetComponentInChildren<TextMeshProUGUI>();
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
-    public void SetMaxHealth(int maxHealth)
+    private void Start()
     {
-        _healthSlider.maxValue = maxHealth;
-        _healthSlider.value = maxHealth;
-        _healthText.text = _healthSlider.value.ToString();
+        _amountPerSegment = _maxHealth / healthbarSegmentArray.Length;
     }
 
-    public void SetHealth(int health)
+    public void UpdateHealthBar(float health)
     {
-        _healthSlider.value = health;
-        _healthText.text = _healthSlider.value.ToString();
+        for (int i = 0; i < healthbarSegmentArray.Length; i++)
+        {
+            int healthSegmentMin = Mathf.RoundToInt(i * _amountPerSegment);
+            int healthSegmentMax = Mathf.RoundToInt((i + 1) * _amountPerSegment);
+
+            if (health <= healthSegmentMin)
+            {
+                healthbarSegmentArray[i].fillAmount = 0f;
+            }
+            else
+            {
+                if (health >= healthSegmentMax)
+                {
+                    healthbarSegmentArray[i].fillAmount = 1f;
+                }
+                else
+                {
+                    float fillAmount = (health - healthSegmentMin) / _amountPerSegment;
+                    healthbarSegmentArray[i].fillAmount = fillAmount;
+                }
+            }
+        }
     }
+
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class FPSDisplay : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class FPSDisplay : MonoBehaviour
     private float[] frameDeltaTimeArray;
 
     private TextMeshProUGUI uiText;
+    private int _calculatedFPS;
 
     private void Awake()
     {
@@ -22,7 +24,14 @@ public class FPSDisplay : MonoBehaviour
         frameDeltaTimeArray[lastFrameIndex] = Time.deltaTime;
         lastFrameIndex = (lastFrameIndex + 1) % frameDeltaTimeArray.Length;
 
-        uiText.text = Mathf.RoundToInt(CalculateFPS()).ToString() + " FPS";
+        _calculatedFPS = Mathf.RoundToInt(CalculateFPS());
+
+        if (_calculatedFPS < 40)
+        {
+            uiText.color = Color.red;
+        }
+
+        uiText.text = _calculatedFPS.ToString() + " FPS";
     }
 
     private float CalculateFPS()
