@@ -47,7 +47,7 @@ public class spawn_blood : MonoBehaviour
             g.transform.position += new Vector3(x, y, z);
 
 
-            g.GetComponent<Rigidbody>().velocity = transform.position;
+            g.GetComponent<Rigidbody>().linearVelocity = transform.position;
 
 
             g.SetActive(true);

@@ -15,7 +15,7 @@ public class BulletProjectile : NetworkBehaviour
     private void Start()
     {
         float speed = 40f;
-        bulletRigidBody.velocity = transform.forward * speed;
+        bulletRigidBody.linearVelocity = transform.forward * speed;
     }
     private void OnTriggerEnter(Collider other)
     {

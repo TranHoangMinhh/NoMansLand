@@ -82,18 +82,18 @@ public class PlayerMovement : NetworkBehaviour
     private void Move(Vector3 moveDir){
         Vector2 horizontalMovement;
         Vector3 slowDownRef;
-        currentSpeed =  rb.velocity.magnitude;
+        currentSpeed =  rb.linearVelocity.magnitude;
 
-        horizontalMovement = new Vector2 (rb.velocity.x, rb.velocity.z);
-		rb.velocity = new Vector3 (
+        horizontalMovement = new Vector2 (rb.linearVelocity.x, rb.linearVelocity.z);
+		rb.linearVelocity = new Vector3 (
 			horizontalMovement.x,
-			rb.velocity.y,
+			rb.linearVelocity.y,
 			horizontalMovement.y
 		);
 
         slowDownRef = Vector3.zero;  
-        rb.velocity = Vector3.SmoothDamp(rb.velocity,
-            new Vector3(0,rb.velocity.y,0),
+        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity,
+            new Vector3(0,rb.linearVelocity.y,0),
             ref slowDownRef,
             deaccelerationSpeed);
 

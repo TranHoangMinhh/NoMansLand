@@ -20,7 +20,7 @@ public class AuthenticateUI : MonoBehaviour
             if (playerNameInput.GetComponentInChildren<TMP_InputField>().text != "")
             {
                 _playerName = playerNameInput.GetComponentInChildren<TMP_InputField>().text;
-                LobbyManager.Instance.Authenticate(_playerName);
+                //LobbyManager.Instance.Authenticate(_playerName);
 
                 //Hide();
                 playerNameInput.gameObject.SetActive(false);
